@@ -1,0 +1,7 @@
+import server.Ingredient
+
+model {
+	Ingredient ingredient
+}
+
+json tmpl.ingredient(ingredient)

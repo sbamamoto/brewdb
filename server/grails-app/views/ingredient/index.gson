@@ -1,0 +1,8 @@
+import server.Ingredient
+
+model {
+	Iterable<Ingredient> ingredientList
+}
+
+json tmpl.ingredient(ingredientList ?: [])
+

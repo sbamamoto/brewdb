@@ -1,0 +1,7 @@
+import server.Ingredient
+
+model {
+	Ingredient ingredient
+}
+
+json g.render(ingredient, [resolveTemplate: false, deep: true])

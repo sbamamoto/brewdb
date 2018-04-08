@@ -1,0 +1,19 @@
+<div class="container">
+    <h1>
+        {{ source.name }}
+    </h1>
+    <dl class="list">
+        <dt>Description</dt>
+        <dd>{{ source.description }}</dd>
+        <dt>URL</dt>
+        <dd>{{ source.url }}</dd>
+        <dt>Rating</dt>
+        <dd>{{ source.rating }} </dd>
+    </dl>
+    <div class="row">
+        <div class="col-md-12">
+            <a [routerLink] = "['/source-edit', source.id]" class="btn btn-success">EDIT</a>
+            <button class="btn btn-danger" type="button" (click)="deleteSource(source.id)">Delete</button>
+        </div>
+    </div>
+</div>
