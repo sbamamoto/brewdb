@@ -17,10 +17,17 @@ class IngredientController {
     
     def save() {
         def r = request.JSON
-        def i = new Ingredient(r)
-        println (i.type)
-        println ("TEST the West...")
-        i.save(flush:true)
+        println ("xxxxxx --- "+r)
+        def i = new Ingredient(r[0])
+        
+        def s = Source.findById(r[1])
+        i.source = s
+        println ("TEST the West... "+i.source)
+        if (!i.save(flush:true)) {
+            i.errors.allErrors.each {
+                println it
+            }
+        }
         respond Ingredient.findAll()
     }
     
@@ -33,11 +40,11 @@ class IngredientController {
 
     def update() {
         def r = request.JSON
+        println ("update ---- "+r)
         def i = Ingredient.findById(params['id'])
-        def s = r.source
-        s = Source.findById(r.source)
+        def s = Source.findById(r[1])
         println(s.name)
-        i.properties = r
+        i.properties = r[0]
         i.source = s
         i.save(flush:true)
         respond Ingredient.findAll()

@@ -1,22 +1,22 @@
 <div class="container">
     <h1>Add New Ingredient</h1>
-    <div class="row">
+    <div class="row"> 
         <div class="col-md-6">
             <form (ngSubmit)="saveIngredient(ingredient.id)" #ingredientForm="ngForm">
                 <div class="form-group">
                     <label for="type">Type</label>
-                    <input type="text" class="form-control" [(ngModel)]="ingredient.type" name="type" required/>
+                    <input type="text" class="form-control" [(ngModel)]="ingredient.type" name="ing.type" required/>
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <input type="text" class="form-control" [(ngModel)]="ingredient.description" name="description"/>
+                    <input type="text" class="form-control" [(ngModel)]="ingredient.description" name="ing.description"/>
                 </div>
                 <div class="form-group">
                     <label for="notes">Notes</label>
-                    <input type="text" class="form-control" [(ngModel)]="ingredient.notes" name="notes" required/>
+                    <input type="text" class="form-control" [(ngModel)]="ingredient.notes" name="ing.notes" required/>
                 </div>
                 <div class="form-group">
-                    <select class="combobox form-control" [(ngModel)]="sourceid" name="source">
+                    <select class="combobox form-control" [(ngModel)]="sourceid" name="src.source">
                         <option>Please select ...</option>
                         <option *ngFor="let src of sources" value="{{src.id}}">{{src.name}}</option>
                     </select>

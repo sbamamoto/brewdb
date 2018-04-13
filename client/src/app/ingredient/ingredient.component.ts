@@ -15,7 +15,7 @@ export class IngredientComponent implements OnInit {
     ngOnInit() {
         this.http.get('http://localhost:8080/ingredient').subscribe( data=> {
             this.ingredients = data;
-            console.log("Hallo: [" +data[0].source.id+"]") 
+            //console.log("Hallo: [" +data[0].source.id+"]") 
         });
     }
     

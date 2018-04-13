@@ -27,8 +27,10 @@ export class IngredientEditComponent implements OnInit {
     this.http.get('http://localhost:8080/ingredient/'+id).subscribe( data => {
         this.ingredient = data['ingredient'];
         this.sources = data['sources'];
-        this.sourceid = this.ingredient['source'].id;
-        console.log("source: "+this.ingredient['source'].id);
+        if (id != '-1') {
+            this.sourceid = this.ingredient['source'].id;
+            console.log("source: "+this.ingredient['source'].id);
+        }
     }, (err) => {
         console.log(err);
     }
@@ -38,16 +40,18 @@ export class IngredientEditComponent implements OnInit {
   
   saveIngredient(id) {
       if (id == null) {
-          this.http.post ('http://localhost:8080/ingredient', this.ingredient).subscribe(res => {
+          console.log("creating ingredient.");
+          this.http.post ('http://localhost:8080/ingredient', [this.ingredient, this.sourceid]).subscribe(res => {
+                  console.log("ingredient sent");
                   let id = res['id'];
                   this.router.navigate(['/ingredients/']);
              }, (err) => {
                   console.log(err);
              }
-        );  
+        );
       }
       else {
-        this.http.put('http://localhost:8080/ingredient/'+id, this.ingredient).subscribe (res => { 
+        this.http.put('http://localhost:8080/ingredient/'+id, [this.ingredient, this.sourceid]).subscribe (res => { 
             let id = res['id'];
             this.router.navigate(['/ingredients/']);
          }, (err) => {
