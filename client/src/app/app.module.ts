@@ -15,6 +15,8 @@ import { SourceDetailComponent } from './source-detail/source-detail.component';
 import { SourceEditComponent } from './source-edit/source-edit.component';
 import { IngredientComponent } from './ingredient/ingredient.component';
 import { IngredientEditComponent } from './ingredient-edit/ingredient-edit.component';
+import { MaterialComponent } from './material/material.component';
+import { MaterialEditComponent } from './material-edit/material-edit.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { IngredientEditComponent } from './ingredient-edit/ingredient-edit.compo
     SourceDetailComponent,
     SourceEditComponent,
     IngredientComponent,
-    IngredientEditComponent
+    IngredientEditComponent,
+    MaterialComponent,
+    MaterialEditComponent
   ],
   imports: [
     BrowserModule,

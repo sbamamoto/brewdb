@@ -7,6 +7,8 @@ import {SourceDetailComponent} from "./source-detail/source-detail.component";
 import {SourceEditComponent} from "./source-edit/source-edit.component";
 import {IngredientComponent} from "./ingredient/ingredient.component";
 import {IngredientEditComponent} from "./ingredient-edit/ingredient-edit.component";
+import {MaterialComponent} from "./material/material.component";
+import {MaterialEditComponent} from "./material-edit/material-edit.component";
 
 
 const routes: Routes = [
@@ -18,7 +20,11 @@ const routes: Routes = [
   {path: 'ingredients', component: IngredientComponent, data: {title: 'Ingredients List'}},
   {path: 'ingredient/:id', component: IngredientComponent, data: {title: 'Ingredients Delete'}},
   {path: 'ingredient-edit/:id', component: IngredientEditComponent, data: {title: 'Ingredients Edit'}},
-  {path: 'ingredient-edit', component: IngredientEditComponent, data: {title: 'Ingredients Add'}}
+  {path: 'ingredient-edit', component: IngredientEditComponent, data: {title: 'Ingredients Add'}},
+  {path: 'materials', component: MaterialComponent, data: {title: 'Materials List'}},
+  {path: 'material/:id', component: MaterialComponent, data: {title: 'Materials Delete'}},
+  {path: 'material-edit/:id', component: MaterialEditComponent, data: {title: 'Materials Edit'}},
+  {path: 'material-edit', component: MaterialEditComponent, data: {title: 'Materials Add'}}
 ];
  
 @NgModule({

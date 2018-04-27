@@ -1,7 +1,6 @@
 package server
 
-class Ingredient {
-    
+class Material {
     String type
     String description
     String notes
@@ -12,6 +11,7 @@ class Ingredient {
     static constraints = {
         description nullable:true
         notes nullable:true
+        sourceUrl nullable:true
     }
     
     static mapping = {
