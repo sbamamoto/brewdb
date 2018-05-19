@@ -2,12 +2,10 @@ package server
 
 class Ingredient {
     
-    String type
-    String description
-    String notes
-    String sourceUrl
+    String units
+    String measure
 
-    static belongsTo = [source: Source]
+    static belongsTo = [material: Material]
 
     static constraints = {
         description nullable:true
@@ -15,7 +13,7 @@ class Ingredient {
     }
     
     static mapping = {
-        source lazy: false
+        material lazy: false
     }
     
     String toString() {

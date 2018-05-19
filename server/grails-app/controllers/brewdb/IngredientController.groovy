@@ -17,12 +17,12 @@ class IngredientController {
     
     def save() {
         def r = request.JSON
-        println ("xxxxxx --- "+r)
+
         def i = new Ingredient(r[0])
         
         def s = Source.findById(r[1])
         i.source = s
-        println ("TEST the West... "+i.source)
+
         if (!i.save(flush:true)) {
             i.errors.allErrors.each {
                 println it
