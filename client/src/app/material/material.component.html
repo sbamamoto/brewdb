@@ -8,8 +8,8 @@
         <thead>
         <tr>
             <th>Type</th>
+            <th>Name</th>
             <th>Description</th>
-            <th>Notes</th>
             <th>Source</th>
             <th>Action</th>
         </tr>
@@ -17,9 +17,11 @@
         <tbody>
             <tr *ngFor="let mat of materials">
                 <td>{{ mat.type }}</td>
+                <td>{{ mat.name }}</td>
+                
                 <td>{{ mat.description }}</td>
-                <td>{{ mat.notes }}</td>
-                <td>{{ mat.source.name }}</td>
+                <td>{{ mat.sourceUrl }}</td>
+               
                 
                 <td><a href="/#/material-edit/{{mat.id}}">EDIT</a></td>
                 <td><a [routerLink]=""><span (click)="deleteMaterial(mat.id)">DELETE</span></a></td>
