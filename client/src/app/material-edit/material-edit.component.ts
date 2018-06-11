@@ -27,10 +27,6 @@ export class MaterialEditComponent implements OnInit {
     this.http.get('http://localhost:8080/material/'+id).subscribe( data => {
         this.material = data['material'];
         this.types = data['types'];
-        if (id != '-1') {
-            this.type = this.material['types'].id;
-            console.log("source: "+this.material['types'].id);
-        }
     }, (err) => {
         console.log(err);
     }
@@ -40,8 +36,8 @@ export class MaterialEditComponent implements OnInit {
   
   saveMaterial(id) {
       if (id == null) {
-          console.log("creating material.");
-          this.http.post ('http://localhost:8080/ingredient', [this.material, this.type]).subscribe(res => {
+          console.log("creating material."+this.type);
+          this.http.post ('http://localhost:8080/material', [this.material]).subscribe(res => {
                   console.log("material sent");
                   let id = res['id'];
                   this.router.navigate(['/materials/']);
@@ -51,7 +47,7 @@ export class MaterialEditComponent implements OnInit {
         );
       }
       else {
-        this.http.put('http://localhost:8080/material/'+id, [this.material, this.type]).subscribe (res => { 
+        this.http.put('http://localhost:8080/material/'+id, [this.material]).subscribe (res => { 
             let id = res['id'];
             this.router.navigate(['/materials/']);
          }, (err) => {

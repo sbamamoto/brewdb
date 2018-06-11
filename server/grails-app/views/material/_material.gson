@@ -1,7 +1,7 @@
-import server.Ingredient
+import server.Material
 
 model {
-	Ingredient ingredient
+	Material material
 }
 
-json g.render(ingredient, [resolveTemplate: false, deep: true])
+json g.render(material, [resolveTemplate: false, deep: true])

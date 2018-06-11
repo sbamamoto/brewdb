@@ -16,7 +16,7 @@ export class MaterialComponent implements OnInit {
     ngOnInit() {
         this.http.get('http://localhost:8080/material').subscribe( data=> {
             this.materials = data;
-            //console.log("Hallo: [" +data[0].source.id+"]") 
+            console.log("Hallo: [" +data[0].notes+"]") 
         });
     }
     

@@ -1,10 +1,8 @@
 package server
 
 class Material {
-    
-
-    
-    MaterialType type
+ 
+    String type
     String name
     String description
     String notes
@@ -21,6 +19,7 @@ class Material {
         sourceUrl nullable:true
         stockUnits nullable:true
         measure nullable:true
+        source nullable:true
     }
     
     static mapping = {

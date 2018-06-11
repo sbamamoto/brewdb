@@ -4,22 +4,38 @@
         <div class="col-md-6">
             <form (ngSubmit)="saveMaterial(material.id)" #materialForm="ngForm">
                 <div class="form-group">
-                    <select class="combobox form-control" [(ngModel)]="sourceid" name="types">
+                    <select class="combobox form-control" [(ngModel)]="material.type" name="mat.type">
                         <option>Please select ...</option>
-                        <option *ngFor="let type of types" value="{{type.name}}">{{type.name}}</option>
+                        <option *ngFor="let type of types" value="{{type}}">{{type}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="description">Name</label>
-                    <input type="text" class="form-control" [(ngModel)]="material.name" name="mat.description"/>
+                    <input type="text" class="form-control" [(ngModel)]="material.name" name="mat.name" required>
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <input type="text" class="form-control" [(ngModel)]="material.description" name="mat.description"/>
+                    <textarea class="form-control" [(ngModel)]="material.description" name="mat.description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="description">Source URL</label>
+                    <input type="text" class="form-control" [(ngModel)]="material.sourceUrl" name="mat.sourceUrl"/>
                 </div>
                 <div class="form-group">
                     <label for="notes">Notes</label>
-                    <input type="text" class="form-control" [(ngModel)]="material.notes" name="mat.notes" required/>
+                    <textarea class="form-control" [(ngModel)]="material.notes" name="mat.notes"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="notes">On stock</label>
+                    <input type="text" class="form-control" [(ngModel)]="material.stockUnits" name="mat.stockUnits" required/>
+                </div>
+                <div class="form-group">
+                    <label for="notes">Measure</label>
+                    <input type="text" class="form-control" [(ngModel)]="material.measure" name="mat.measure" required/>
+                </div>
+                <div class="form-group">
+                    <label for="notes">Value</label>
+                    <input type="text" class="form-control" [(ngModel)]="material.value" name="mat.value" required/>
                 </div>
                 <div class="form-group">
                     <select class="combobox form-control" [(ngModel)]="sourceid" name="src.source">

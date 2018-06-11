@@ -18,6 +18,7 @@ import { IngredientEditComponent } from './ingredient-edit/ingredient-edit.compo
 import { MaterialComponent } from './material/material.component';
 import { MaterialEditComponent } from './material-edit/material-edit.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
