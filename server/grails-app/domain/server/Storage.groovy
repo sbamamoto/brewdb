@@ -2,7 +2,7 @@ package server
 
 class Storage {
     Source source
-    Ingredient ingredient
+    Material material
     String quantity
     String unit
     

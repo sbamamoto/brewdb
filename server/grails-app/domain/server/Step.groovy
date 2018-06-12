@@ -6,7 +6,7 @@ class Step {
     String duration
     String timeUnit
     
-    static hasMany = [ingredients:Ingredient]
+    static hasMany = [ingredients:Ingredient, materials:Material]
     
     static constraints = {
     }
