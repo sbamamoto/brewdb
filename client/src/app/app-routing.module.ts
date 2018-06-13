@@ -9,10 +9,12 @@ import {IngredientComponent} from "./ingredient/ingredient.component";
 import {IngredientEditComponent} from "./ingredient-edit/ingredient-edit.component";
 import {MaterialComponent} from "./material/material.component";
 import {MaterialEditComponent} from "./material-edit/material-edit.component";
+import {ReceiptComponent} from "./receipt/receipt.component";
 
 
 const routes: Routes = [
-  {path: '', redirectTo: '/sources', pathMatch: 'full'},
+  {path: '', redirectTo: '/receipts', pathMatch: 'full'},
+  {path: 'receipts', component: ReceiptComponent, data: {title: 'Receipt List'}},
   {path: 'sources', component: SourceComponent, data: {title: 'Sources List'}},
   {path: 'source-create', component: SourceCreateComponent, data: {title: 'Add Source'}},  
   {path: 'source-details/:id', component: SourceDetailComponent, data: {title: 'Source Details'}},  
