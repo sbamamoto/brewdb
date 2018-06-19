@@ -18,6 +18,7 @@ import { IngredientEditComponent } from './ingredient-edit/ingredient-edit.compo
 import { MaterialComponent } from './material/material.component';
 import { MaterialEditComponent } from './material-edit/material-edit.component';
 import { ReceiptComponent } from './receipt/receipt.component';
+import { ReceiptEditComponent } from './receipt-edit/receipt-edit.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ReceiptComponent } from './receipt/receipt.component';
     IngredientEditComponent,
     MaterialComponent,
     MaterialEditComponent,
-    ReceiptComponent
+    ReceiptComponent,
+    ReceiptEditComponent
   ],
   imports: [
     BrowserModule,

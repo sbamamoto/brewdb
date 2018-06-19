@@ -1,0 +1,191 @@
+<div class="container">
+  <div class="row">
+    <h2>Rezeptdaten</h2>
+    <form>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Rezeptname</label>
+        <input type="text" size="80" class="form-control" id="exampleInputPassword1" placeholder="Name des Rezeptes">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Beschreibung</label>
+        <textarea class="form-control" id="exampleInputPassword1" placeholder="Beschreibung" rows="6"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Biertyp</label>
+        <input type="text" size="80" class="form-control" id="exampleInputPassword1" placeholder="Biertyp">
+      </div>
+      <div class="form-group">
+        <label for="inlineFormCustomSelect">Preference</label>
+        <select class="custom-select" width="100" id="inlineFormCustomSelect">
+          <option selected>Infusion</option>
+          <option value="1">Dekoktion</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="invalidCheck">
+          <label class="form-check-label" for="invalidCheck">
+            Reinheitsgebot
+          </label>
+        </div>
+      </div>
+
+      <div class="form-row align-items-center">
+        <div class="col-auto">
+          <label class="sr-only" for="inlineFormInputGroup">Alkoholgehalt</label>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">%alc</div>
+            </div>
+            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Alkoholgehalt">
+          </div>
+        </div>
+        <div class="col-auto">
+          <label class="sr-only" for="inlineFormInputGroup">Zucker</label>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">°P</div>
+            </div>
+            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Zucker">
+          </div>
+        </div>
+        <div class="col-auto">
+          <label class="sr-only" for="inlineFormInputGroup">Farbe</label>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">EBC</div>
+            </div>
+            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Farbe">
+          </div>
+        </div>
+        <div class="col-auto">
+          <label class="sr-only" for="inlineFormInputGroup">Bittere</label>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">IBU</div>
+            </div>
+            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Bittere">
+          </div>
+        </div>
+      </div>
+      <div class="btn-group" data-toggle="buttons">
+        <label class="btn">
+          <input type="radio" name="options" id="option1"> obergärig
+        </label>
+        <label class="btn btn">
+        <input type="radio" name="options" id="option2"> untergärig
+        </label>
+      </div>
+    </form>
+  </div>
+  <div class="row">
+    <!--div class="col-sm">
+      <h2>Data Input</h2>
+      <form>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Schritt</label>
+          <select class="custom-select" id="exampleFormControlSelect1">
+            <option>Einmaischen</option>
+            <option>Rasten</option>
+            <option>Läutern</option>
+            <option>Hopfenkochen</option>
+            <option>Ruhen</option>
+            <option>Whirlpool</option>
+            <option>Ausschlagen</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Temperatur</label>
+          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Temperatur des Sudes wenn geheizt wird.">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Dauer</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Dauer in Minuten">
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Zutaten hinzufügen</button>
+          <ul class="list-group">
+            <li class="list-group-item disabled">Keine Zutaten</li>
+          </ul>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Ausrüstung hinzufügen</button>
+          <ul class="list-group">
+            <li class="list-group-item disabled">Keine Ausrüstung</li>
+          </ul>
+        </div>
+
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    <div class="col-sm"-->
+      <h2>Arbeitsschritte</h2>
+      <div id="accordion">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Collapsible Group Item #1
+              </button>
+            </h5>
+          </div>
+
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
+              non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+              sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+              helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
+              lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
+              of them accusamus labore sustainable VHS.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Collapsible Group Item #2
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
+              non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+              sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+              helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
+              lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
+              of them accusamus labore sustainable VHS.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Collapsible Group Item #3
+              </button>
+            </h5>
+          </div>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+            <div class="card-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
+              non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+              sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+              helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
+              lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
+              of them accusamus labore sustainable VHS.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!--/div-->
+</div>

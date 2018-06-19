@@ -9,15 +9,20 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ReceiptComponent implements OnInit {
 
-  receipts:any;
+  receipts: any;
 
-  constructor(private http:HttpClient, private router:Router) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
-    this.http.get('http://localhost:8080/receipt').subscribe( data=> {
+    this.http.get('http://localhost:8080/receipt').subscribe(data => {
       this.receipts = data;
-      console.log("Hallo: [" +data[0].notes+"]") 
-  });
+      console.log("Hallo: [" + data[0].notes + "]")
+    });
   }
 
+  deleteReceipt(id) {
+    this.http.delete('http://localhost:8080/receipt/' + id).subscribe(data => {
+      this.receipts = data;
+    });
+  }
 }

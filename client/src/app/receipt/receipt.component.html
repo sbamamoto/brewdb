@@ -1,29 +1,18 @@
 <div class="container">
-  <h1>Sources List
-      <a [routerLink]="['/source-create']" class="btn btn-default btn-lg">
+  <h1>Receipt List
+      <a [routerLink]="['/receipt-edit']" class="btn btn-default btn-lg">
           <span class="glyphicon glyphicon-plus" aria-hidden="true">+</span>
       </a>
   </h1>
 
-  <table class="table">
-      <thead>
-          <tr>
-              <th>Name</th>
-              <th>Rating</th>
-              <th>URL</th>
-              <th>Action</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let src of sources">
-              <td>{{ src.name }}</td>
-              <td>{{ src.rating }}</td>
-              <td>{{ src.url }}</td>
-              <td>
-                  <a href="/#/source-edit/{{src.id}}">EDIT</a>
-              </td>
-          </tr>
-
-      </tbody>
-  </table>
+  <div class="list-group">
+    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" *ngFor="let receipt of recipts">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{ receipt.name }}</h5>
+        <small>3 days ago</small>
+      </div>
+      <p class="mb-1">$ {{ receipt.description }}</p>
+      <small>Donec id elit non mi porta.</small>
+    </a>
+  </div>
 </div>

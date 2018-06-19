@@ -11,6 +11,9 @@ class Receipt {
     String color
     String alcohol
     String yeastPosition
+    String sourceUrl
+    String brewer
+    
 
     static hasMany = [steps:Step]
     

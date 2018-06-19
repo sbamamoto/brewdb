@@ -10,6 +10,7 @@ import {IngredientEditComponent} from "./ingredient-edit/ingredient-edit.compone
 import {MaterialComponent} from "./material/material.component";
 import {MaterialEditComponent} from "./material-edit/material-edit.component";
 import {ReceiptComponent} from "./receipt/receipt.component";
+import {ReceiptEditComponent} from "./receipt-edit/receipt-edit.component";
 
 
 const routes: Routes = [
@@ -26,7 +27,10 @@ const routes: Routes = [
   {path: 'materials', component: MaterialComponent, data: {title: 'Materials List'}},
   {path: 'material/:id', component: MaterialComponent, data: {title: 'Materials Delete'}},
   {path: 'material-edit/:id', component: MaterialEditComponent, data: {title: 'Materials Edit'}},
-  {path: 'material-edit', component: MaterialEditComponent, data: {title: 'Materials Add'}}
+  {path: 'material-edit', component: MaterialEditComponent, data: {title: 'Materials Add'}},
+  {path: 'receipt/:id', component: ReceiptComponent, data: {title: 'Receipt Delete'}},
+  {path: 'receipt-edit/:id', component: ReceiptEditComponent, data: {title: 'Receipt Edit'}},
+  {path: 'receipt-edit', component: ReceiptEditComponent, data: {title: 'Receipt Add'}}
 ];
  
 @NgModule({
