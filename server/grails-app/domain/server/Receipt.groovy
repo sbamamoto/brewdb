@@ -18,5 +18,8 @@ class Receipt {
     static hasMany = [steps:Step]
     
     static constraints = {
+        yeastPosition nullable:true
+        sourceUrl nullable:true
+        brewer nullable:true
     }
 }

@@ -14,20 +14,19 @@ class ReceiptController {
     }
 
     def show() {
-        def m
+        def r
         if (params['id']!='-1') { 
-            m = Receipt.findById(params['id'])
+            r = Receipt.findById(params['id'])
         }
         else {
-            m = new Receipt();
+            r = new Receipt();
         }
         
         def responseData = [
-            'material': m,
-            'types': ["Malz","Hopfen","Hefe","Wasser","Andere","Aurüstung"]
+            'receipt': r
         ]
         
-        render responseData as JSON
+        render r as JSON
     }
     
     def delete() {

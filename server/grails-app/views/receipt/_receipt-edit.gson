@@ -1,0 +1,7 @@
+import server.Receipt
+
+model {
+	Receipt receipt
+}
+
+json tmpl.receipt(receipt)

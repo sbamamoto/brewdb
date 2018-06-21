@@ -1,0 +1,9 @@
+import server.Receipt
+
+model {
+	Iterable<Receipt> receiptList
+}
+
+json tmpl.receipt(receiptList ?: [])
+
+

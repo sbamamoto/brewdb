@@ -11,6 +11,8 @@ import {MaterialComponent} from "./material/material.component";
 import {MaterialEditComponent} from "./material-edit/material-edit.component";
 import {ReceiptComponent} from "./receipt/receipt.component";
 import {ReceiptEditComponent} from "./receipt-edit/receipt-edit.component";
+import {StepComponent} from "./step/step.component";
+import {StepEditComponent} from "./step-edit/step-edit.component";
 
 
 const routes: Routes = [
@@ -30,7 +32,10 @@ const routes: Routes = [
   {path: 'material-edit', component: MaterialEditComponent, data: {title: 'Materials Add'}},
   {path: 'receipt/:id', component: ReceiptComponent, data: {title: 'Receipt Delete'}},
   {path: 'receipt-edit/:id', component: ReceiptEditComponent, data: {title: 'Receipt Edit'}},
-  {path: 'receipt-edit', component: ReceiptEditComponent, data: {title: 'Receipt Add'}}
+  {path: 'receipt-edit', component: ReceiptEditComponent, data: {title: 'Receipt Add'}},
+  {path: 'step/:id', component: ReceiptComponent, data: {title: 'Step Delete'}},
+  {path: 'step-edit/:id', component: ReceiptEditComponent, data: {title: 'Step Edit'}},
+  {path: 'step-edit', component: ReceiptEditComponent, data: {title: 'Step Add'}}
 ];
  
 @NgModule({

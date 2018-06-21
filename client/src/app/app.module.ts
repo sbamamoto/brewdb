@@ -19,6 +19,8 @@ import { MaterialComponent } from './material/material.component';
 import { MaterialEditComponent } from './material-edit/material-edit.component';
 import { ReceiptComponent } from './receipt/receipt.component';
 import { ReceiptEditComponent } from './receipt-edit/receipt-edit.component';
+import { StepComponent } from './step/step.component';
+import { StepEditComponent } from './step-edit/step-edit.component';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import { ReceiptEditComponent } from './receipt-edit/receipt-edit.component';
     MaterialComponent,
     MaterialEditComponent,
     ReceiptComponent,
-    ReceiptEditComponent
+    ReceiptEditComponent,
+    StepComponent,
+    StepEditComponent
   ],
   imports: [
     BrowserModule,

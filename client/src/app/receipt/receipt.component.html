@@ -6,13 +6,38 @@
   </h1>
 
   <div class="list-group">
-    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" *ngFor="let receipt of recipts">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">{{ receipt.name }}</h5>
-        <small>3 days ago</small>
-      </div>
-      <p class="mb-1">$ {{ receipt.description }}</p>
-      <small>Donec id elit non mi porta.</small>
+    <ng-container  *ngFor="let receipt of receipts">
+    <a href="/#/receipt-edit/{{receipt.id}}" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{receipt.name}}</h5>
+          <span>
+          <a class="fas fa-edit" href="/#/receipt-edit/{{receipt.id}}" data-toggle="tooltip" title="Rezept bearbeiten" style="font-size: 1.3em;"></a>
+          <a class="fas fa-hand-paper" href="#" data-toggle="tooltip" title="Arbeistschritte erfassen" style="font-size: 1.3em;"></a>
+          <a [routerLink]="">
+            <i class="fas fa-trash-alt" data-toggle="tooltip" title="Rezept löschen" style="font-size: 1.3em;" (click)="deleteReceipt(receipt.id)"></i>
+         </a>
+          <a class="fas fa-trash-alt" href="#" data-toggle="modal" data-target="#myModal" style="font-size: 1.3em;" (click)="id=receipt.id"></a>
+          </span>
+        </div>
+        <p class="mb-1">{{receipt.description}}</p>
+        <small><b>Alkohol:</b> {{receipt.alcohol}}%    <b>Stammwürze:</b> {{receipt.wort}}°P <b>Bittere:</b> {{receipt.ibu}} IBU <b>Farbe:</b> {{receipt.color}} EBC</small>
     </a>
+    </ng-container>
   </div>
 </div>
+<div class="modal fade"  id="myModal"  tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Löschbestätigung</h4>
+      </div>
+      <div class="modal-body">
+        <p>Das Rezept {{id}} wirklich löschen ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Nein</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteReceipt(id)">Ja</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

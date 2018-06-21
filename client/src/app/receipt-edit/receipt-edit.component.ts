@@ -21,8 +21,9 @@ export class ReceiptEditComponent implements OnInit {
     else {
       id = '-1';
     }
-
+   
     this.http.get('http://localhost:8080/receipt/' + id).subscribe(data => {
+      console.log(data);
       this.receipt = data;
     }, (err) => {
       console.log(err);
@@ -42,7 +43,7 @@ export class ReceiptEditComponent implements OnInit {
       );
     }
     else {
-      this.http.put('http://localhost:8080/material/' + id, [this.receipt]).subscribe(res => {
+      this.http.put('http://localhost:8080/receipt/' + id, [this.receipt]).subscribe(res => {
         let id = res['id'];
         this.router.navigate(['/receipts/']);
       }, (err) => {

@@ -1,0 +1,7 @@
+import server.Receipt
+
+model {
+	Receipt receipt
+}
+
+json g.render(receipt, [resolveTemplate: false, deep: true])
