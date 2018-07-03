@@ -2,6 +2,7 @@ package server
 
 class Step {
 
+    String name
     String type
     String duration
     String timeUnit

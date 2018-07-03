@@ -16,7 +16,6 @@ export class ReceiptComponent implements OnInit {
   ngOnInit() {
     this.http.get('http://localhost:8080/receipt').subscribe(data => {
       this.receipts = data;
-      console.log("Hallo: [" + data[0].notes + "]")
     });
   }
 

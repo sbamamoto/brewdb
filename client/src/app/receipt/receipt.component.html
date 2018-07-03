@@ -12,10 +12,10 @@
           <h5 class="mb-1">{{receipt.name}}</h5>
           <span>
           <a class="fas fa-edit" href="/#/receipt-edit/{{receipt.id}}" data-toggle="tooltip" title="Rezept bearbeiten" style="font-size: 1.3em;"></a>
-          <a class="fas fa-hand-paper" href="#" data-toggle="tooltip" title="Arbeistschritte erfassen" style="font-size: 1.3em;"></a>
-          <a [routerLink]="">
+          <a class="fas fa-hand-paper" href="/#/steps/{{receipt.id}}" data-toggle="tooltip" title="Arbeistschritte erfassen" style="font-size: 1.3em;"></a>
+          <!--a [routerLink]="">
             <i class="fas fa-trash-alt" data-toggle="tooltip" title="Rezept löschen" style="font-size: 1.3em;" (click)="deleteReceipt(receipt.id)"></i>
-         </a>
+         </a-->
           <a class="fas fa-trash-alt" href="#" data-toggle="modal" data-target="#myModal" style="font-size: 1.3em;" (click)="id=receipt.id"></a>
           </span>
         </div>

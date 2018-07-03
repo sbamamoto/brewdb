@@ -35,6 +35,7 @@ export class ReceiptEditComponent implements OnInit {
     if (id == null) {
       this.http.post('http://localhost:8080/receipt', [this.receipt]).subscribe(res => {
         console.log("receipt sent");
+        console.log(this.receipt);
         let id = res['id'];
         this.router.navigate(['/']);
       }, (err) => {
@@ -43,6 +44,7 @@ export class ReceiptEditComponent implements OnInit {
       );
     }
     else {
+      console.log(this.receipt['yeastPosition']);
       this.http.put('http://localhost:8080/receipt/' + id, [this.receipt]).subscribe(res => {
         let id = res['id'];
         this.router.navigate(['/receipts/']);

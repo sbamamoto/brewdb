@@ -3,7 +3,7 @@
     <h2>Rezeptdaten</h2>
     <form (ngSubmit)="saveReceipt(receipt.id)" #receiptForm="ngForm">
       <div class="form-group">
-        <label for="name">Rezeptname  * {{receipt.name}} *</label>
+        <label for="name">Rezeptname</label>
         <input type="text" size="80" class="form-control" id="name" placeholder="Name des Rezeptes" [(ngModel)]="receipt.name" name="rcpt.name" required>
       </div>
       <div class="form-group">
@@ -23,7 +23,7 @@
       </div>
       <div class="form-group">
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="reinheitsGebot" [(ngModel)]="receipt.reinheitsGebot" name="rcpt.reinheitsGebot" required>
+          <input class="form-check-input" type="checkbox" id="reinheitsGebot" [(ngModel)]="receipt.reinheitsGebot" name="rcpt.reinheitsGebot" required>
           <label class="form-check-label" for="reinheitsGebot">
             Reinheitsgebot
           </label>
@@ -70,10 +70,10 @@
       </div>
       <div class="btn-group" data-toggle="buttons">
         <label class="btn">
-          <input type="radio" name="options" id="option1" value="OG" [(ngModel)]="receipt.yeastPosition" name="rcpt.yeastPosition"> obergärig
+          <input type="radio" id="yeastPositionUG" value="OG" [(ngModel)]="receipt.yeastPosition" name="yeastPosition"> obergärig
         </label>
         <label class="btn btn">
-          <input type="radio" name="options" id="option2" value="UG" [(ngModel)]="receipt.yeastPosition" name="rcpt.yeastPosition"> untergärig
+          <input type="radio" id="yeastPositionOG" value="UG" [(ngModel)]="receipt.yeastPosition" name="yeastPosition"> untergärig
         </label>
       </div>
       <div class="input-group mb-2">
@@ -86,7 +86,7 @@
           <div class="input-group-prepend">
             <div class="input-group-text">Author</div>
           </div>
-          <input type="text" class="form-control" id="author" placeholder="Author" [(ngModel)]="receipt.author" name="rcpt.author">
+          <input type="text" class="form-control" id="author" placeholder="Author" [(ngModel)]="receipt.brewer" name="rcpt.author">
         </div>
       <div class="form-group">
         <button type="submit" class="btn btn-outline-success">Speichern</button>

@@ -1,3 +1,50 @@
-<p>
-  step-edit works!
-</p>
+<div class="container">
+  <div class="row">
+    <h2>Arbeitsschritt</h2>
+    <form (ngSubmit)="saveStep(receipt.id)" #stepForm="ngForm">
+      <div class="form-group">
+        <label for="type">Typ</label>
+        <select class="custom-select" width="100" id="type" [(ngModel)]="step.type" name="stp.type" required>
+          
+          <option value="HEAT" selected>Erhitzen</option>
+          <option value="MASH" selected>Maischen</option>
+          <option value="ADD">Hinzufügen</option>
+          <option value="WAIT">Warten</option>
+          <option value="LAUTER">Läutern</option>
+          <option value="COOK">Kochen</option>
+          <option value="FERMENT">Gären</option>
+          <option value="STORE">Lagern</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" size="80" class="form-control" id="name" placeholder="Bescheibender Name" [(ngModel)]="step.name" name="stp.name">
+      </div>
+      <div class="form-group">
+        <label for="duration">Dauer</label>
+        <input type="text" size="80" class="form-control" id="duration" placeholder="Dauer des Arbeitsschrittes" [(ngModel)]="step.duration" name="stp.duration"
+          required>
+      </div>
+      <div class="form-group">
+        <label for="timeUnit">Zeiteinheit</label>
+        <select class="custom-select" width="100" id="timeUnit" [(ngModel)]="step.timeUnit" name="stp.timeUnit" required>
+          <option value="MIN" selected>Minuten</option>
+          <option value="HOUR">Stunden</option>
+          <option value="DAYS">Tage</option>
+          <option value="WEEKS">Wochen</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="temperature">Temperatur</label>
+        <input type="text" size="80" class="form-control" id="temperature" placeholder="Temperatur" [(ngModel)]="step.temperature" name="stp.temperature">
+      </div>
+      <div class="form-group">
+        <label for="description">Beschreibung</label>
+        <textarea class="form-control" id="description" placeholder="Bechreibung der Tätigkeiten" rows="6" [(ngModel)]="step.description" name="stp.description"></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-outline-success">Speichern</button>
+      </div>
+    </form>
+  </div>
+</div>
