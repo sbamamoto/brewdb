@@ -1,38 +1,46 @@
 <div class="container">
-  <h1>Arbeistschritte für Rezept {{stepInfo.receiptName}} ({{stepInfo.receiptId}})
-      <a [routerLink]="[].concat.apply([],['/step-edit', -1, stepInfo.receiptId])">
-          <span class="glyphicon glyphicon-plus" aria-hidden="true">+</span>
-      </a>
+  <h1>Arbeitsschritte für Rezept {{stepInfo.receiptName}} ({{receiptId}})
+    <a href="/#/step-edit/-1/{{receiptId}}">
+      <span class="glyphicon glyphicon-plus" aria-hidden="true">+</span>
+    </a>
   </h1>
 
   <div class="list-group">
-    <ng-container  *ngFor="let step of stepInfo.steps">
-    <a href="/#/step-edit/{{step.id}}/{{stepInfo.receiptId}}" class="list-group-item list-group-item-action flex-column align-items-start">
+    <ng-container *ngFor="let step of stepInfo.steps">
+      <a href="/#/step-edit/{{step.id}}/{{receiptId}}" class="list-group-item list-group-item-action flex-column align-items-start">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">{{step.name}}</h5>
           <span>
+            <a class="fas fa-angle-up" href="javascript:void(0);" style="font-size: 1.3em;" (click)="up(step.id)"></a>
+            <a class="fas fa-angle-down" href="javascript:void(0);" style="font-size: 1.3em;" (click)="down(step.id)"></a>
             <a class="fas fa-trash-alt" href="#" data-toggle="modal" data-target="#myModal" style="font-size: 1.3em;" (click)="id=step.id"></a>
           </span>
         </div>
-        <p class="mb-1">{{receipt.description}}</p>
-        <small><b>Typ:</b> {{step.type}}%    <b>Dauer:</b> {{step.duration.wort}} {{sterp.timeUnit}}</small>
-    </a>
+        <p class="mb-1">{{step.description}}</p>
+        <small>
+          <b>Typ:</b> {{step.stepType}}
+          <b>Dauer:</b> {{step.duration}} {{step.timeUnit}}
+          <b>#:</b>{{step.orderNumber}} </small>
+      </a>
     </ng-container>
   </div>
 </div>
-<div class="modal fade"  id="myModal"  tabindex="-1" role="dialog">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Löschbestätigung</h4>
       </div>
       <div class="modal-body">
-        <p>Das Rezept {{id}} wirklich löschen ?</p>
+        <p>Den Arbeitsschritt {{id}} wirklich löschen ?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Nein</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteStep(id)">Ja</button>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

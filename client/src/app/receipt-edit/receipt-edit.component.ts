@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './receipt-edit.component.html',
   styleUrls: ['./receipt-edit.component.css']
 })
+
 export class ReceiptEditComponent implements OnInit {
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }

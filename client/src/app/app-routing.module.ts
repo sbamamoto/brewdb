@@ -34,9 +34,10 @@ const routes: Routes = [
   {path: 'receipt-edit/:id', component: ReceiptEditComponent, data: {title: 'Receipt Edit'}},
   {path: 'receipt-edit', component: ReceiptEditComponent, data: {title: 'Receipt Add'}},
   {path: 'steps/:id', component: StepComponent, data: {title: 'Work on Steps'}},
+  {path: 'step-up/:id/:up', component: StepComponent, data: {title: 'One Step Up'}},
   {path: 'step/:id', component: StepComponent, data: {title: 'Step Delete'}},
-  {path: 'step-edit/:id/:receipt', component: StepEditComponent, data: {title: 'Step Edit'}},
-  {path: 'step-edit', component: StepEditComponent, data: {title: 'Step Add'}}
+  {path: 'step-edit/:id/:receiptId', component: StepEditComponent, data: {title: 'Step Edit'}},
+  {path: 'step-edit', component: StepEditComponent, data: {title: 'Step Add'}} 
 ];
  
 @NgModule({

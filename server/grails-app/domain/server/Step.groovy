@@ -3,7 +3,7 @@ package server
 class Step {
 
     String name
-    String type
+    String stepType
     String duration
     String timeUnit
     String temperature
@@ -17,5 +17,8 @@ class Step {
     ]
     
     static constraints = {
+        timeUnit nullable:true
+        temperature nullable:true
+        description nullable:true
     }
 }

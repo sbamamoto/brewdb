@@ -10,22 +10,55 @@ import { HttpClient } from '@angular/common/http';
 export class StepEditComponent implements OnInit {
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
-  stepData: any;
-  receiptId: any;
+  step: any;
+  receiptId: string;
+  stepId: string;
 
   ngOnInit() {
-    let id;
+
     if (this.route.snapshot.params['id'] != null) {
-      id = this.route.snapshot.params['id'];
+      this.stepId = this.route.snapshot.params['id'];
     }
     else {
-      id = '-1';
+      this.stepId = '-1';
     }
-    this.receiptId = this.route.snapshot.params['receipt'];
-    this.http.get('http://localhost:8080/step?id='+id+"?receiptId="+this.receiptId).subscribe(data => {
-      console.log(data);      
-      this.stepData = data;
+
+    if (this.route.snapshot.params['receiptId'] != null) {
+      this.receiptId = this.route.snapshot.params['receiptId'];
+    }
+    else {
+      this.receiptId = '-1';
+    }
+
+    this.http.get('http://localhost:8080/step/' + this.stepId).subscribe(data => {
+      console.log(data);
+      this.step = data;
+      console.log(this.step.stepType);
     });
   }
 
+  saveStep(id) {
+    this.step.receiptId=this.receiptId;
+    console.log(" ### "+this.stepId);
+    if (id == "-1") {
+      this.http.post('http://localhost:8080/step', [this.step]).subscribe(res => {
+        console.log("step sent");
+        console.log(this.step);
+        let id = res['id'];
+        this.router.navigate(['/steps/'+this.receiptId]);
+      }, (err) => {
+        console.log(err);
+      }
+      );
+    }
+    else {
+      this.http.put('http://localhost:8080/step/' + id, [this.step]).subscribe(res => {
+        let id = res['id'];
+        this.router.navigate(['/steps/'+this.receiptId]);
+      }, (err) => {
+        console.log(err);
+      });
+    }
+
+  }
 }

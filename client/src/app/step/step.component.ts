@@ -9,22 +9,41 @@ import { HttpClient } from '@angular/common/http';
 })
 export class StepComponent implements OnInit {
   stepInfo: any;
-  receiptId:any;
+  receiptId: string;
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    let id;
     if (this.route.snapshot.params['id'] != null) {
-      id = this.route.snapshot.params['id'];
+      this.receiptId = this.route.snapshot.params['id'];
     }
     else {
-      id = '-1';
+      this.receiptId = '-1';
     }
-    this.receiptId = this.route.snapshot.params['receipt'];
-    this.http.get('http://localhost:8080/stepList/'+id).subscribe(data => {
-      console.log(data);      
+   
+    this.http.get('http://localhost:8080/stepList/'+this.receiptId).subscribe(data => {
+      console.log(' ##### ' + data);      
       this.stepInfo = data;
+      console.log(this.stepInfo);
+      console.log(this.stepInfo.steps);      
+    });
+  }
+
+  up (stepId) {
+    this.http.get('http://localhost:8080/stepList/'+this.receiptId+'?up='+stepId).subscribe(data => {
+      console.log(' ##### ' + data);      
+      this.stepInfo = data;
+      console.log(this.stepInfo);
+      console.log(this.stepInfo.steps);      
+    });
+  }
+
+  down (stepId) {
+    this.http.get('http://localhost:8080/stepList/'+this.receiptId+'?down='+stepId).subscribe(data => {
+      console.log(' ##### ' + data);      
+      this.stepInfo = data;
+      console.log(this.stepInfo);
+      console.log(this.stepInfo.steps);      
     });
   }
 
