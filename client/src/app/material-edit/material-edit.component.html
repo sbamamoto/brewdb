@@ -26,24 +26,9 @@
                     <textarea class="form-control" [(ngModel)]="material.notes" name="mat.notes"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="notes">On stock</label>
-                    <input type="text" class="form-control" [(ngModel)]="material.stockUnits" name="mat.stockUnits" required/>
-                </div>
-                <div class="form-group">
-                    <label for="notes">Measure</label>
-                    <input type="text" class="form-control" [(ngModel)]="material.measure" name="mat.measure" required/>
-                </div>
-                <div class="form-group">
                     <label for="notes">Value</label>
-                    <input type="text" class="form-control" [(ngModel)]="material.value" name="mat.value" required/>
+                    <input type="text" class="form-control" [(ngModel)]="material.value" name="mat.value"/>
                 </div>
-                <div class="form-group">
-                    <select class="combobox form-control" [(ngModel)]="sourceid" name="src.source">
-                        <option>Please select ...</option>
-                        <option *ngFor="let src of sources" value="{{src.id}}">{{src.name}}</option>
-                    </select>
-                </div>
-
                 <div class="form-group">
                     <button type="submit" class="btn btn-success" [disabled]="!materialForm.form.valid" >
                         Save

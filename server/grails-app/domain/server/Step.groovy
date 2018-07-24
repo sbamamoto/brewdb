@@ -20,5 +20,6 @@ class Step {
         timeUnit nullable:true
         temperature nullable:true
         description nullable:true
+        duration nullable:true
     }
 }

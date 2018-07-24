@@ -1,0 +1,7 @@
+import server.Step
+
+model {
+	Step step
+}
+
+json tmpl.step(step)

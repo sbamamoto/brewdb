@@ -1,0 +1,7 @@
+import server.Step
+
+model {
+	Iterable<Step> steps
+}
+
+json tmpl.step(steps ?: [])

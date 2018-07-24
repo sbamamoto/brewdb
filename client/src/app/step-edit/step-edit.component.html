@@ -57,16 +57,70 @@
     </div>
 
     <div class="col-sm">
-        <h2>Zutaten</h2>
-        <div class="list-group">
-            <button type="button" class="list-group-item list-group-item-action active">
-              Cras justo odio
-            </button>
-            <button type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
-            <button type="button" class="list-group-item list-group-item-action">Morbi leo risus</button>
-            <button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
-            <button type="button" class="list-group-item list-group-item-action" disabled>Vestibulum at eros</button>
-          </div>
-      </div>
+      <span>
+      <h2 style="display: inline;">Zutaten</h2> <a class="fas fa-edit" href="#" data-toggle="modal" data-target="#myModal" style="font-size: 1.3em;"></a>
+      </span>
+      <ul class="list-group">
+        <ng-container *ngFor="let material of step.ingredients">
+          <li class="list-group-item flex-column align-items-start">
+            <div class="d-flex flex-row">
+              <h5 class="mb-1 p-2">{{material.name}}</h5>
+              <span class="fas fa-trash-alt p-2 ml-auto" style="font-size: 1.3em;" (click)="id=receipt.id"></span>
+            </div>
+            <div class="d-flex flex-row">
+              <div class="p-2">
+                <div class="form-group">
+                  <label for="measure">Menge</label>
+                  <input type="text" size="10" class="form-control" id="measure" [(ngModel)]="material.measure" placeholder="Menge">
+                </div>
+              </div>
+              <div class="p-2">
+                <div class="form-group">
+                  <label for="unit">Einheit</label>
+                  <select class="custom-select" width="100" id="units" name="units" [(ngModel)]="material.units" required>
+                    <option value="GRAM" selected>Gramm</option>
+                    <option value="KILO">Kilogramm</option>
+                    <option value="LITER">Liter</option>
+                    <option value="MILLILITER">Milliliter</option>
+                    <option value="PIECES">Stück</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
   </div>
 </div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Materialauswahl</h4>
+      </div>
+      <div class="modal-body">
+        <ng-container *ngFor="let material of materialList">
+          <div class="input-group">
+
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input type="radio" aria-label="Radio button for following text input" data-dismiss="modal" (click)="addMaterial(material)">
+              </div>
+            </div>
+            <input type="text" class="form-control" aria-label="Text input with radio button" value="{{material.name}}">
+
+          </div>
+        </ng-container>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Nein</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="(id)">Ja</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

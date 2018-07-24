@@ -1,0 +1,7 @@
+import server.Step
+
+model {
+	Step step
+}
+
+json.grender(template:"step", model:[step:step])

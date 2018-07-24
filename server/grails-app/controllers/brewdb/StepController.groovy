@@ -23,8 +23,12 @@ class StepController {
         else {
             s = new Step();
         }
-        
-        render s as JSON
+
+        JSON.use("deep") {
+            render s as JSON
+        }
+
+//        render s as JSON
     }
     
     def delete() {
@@ -37,10 +41,9 @@ class StepController {
         def r = request.JSON
         println ("update ---- "+r)
         def i = Step.findById(params['id'])
-    //    def s = Source.findById(r[1])
-    //    println(s.name)
+
         i.properties = r[0]
-    //    i.source = s
+
         i.save(flush:true)
         respond Step.findAll()
     }
@@ -55,9 +58,7 @@ class StepController {
         println "****************"
         println r[0]
         println "****************"
-        
-//        def s = Source.findById(r[1])
-//        i.source = s
+
         i.orderNumber = Step.createCriteria().get {   
             projections {
                 max "orderNumber"

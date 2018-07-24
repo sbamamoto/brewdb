@@ -1,0 +1,7 @@
+import server.Step
+
+model {
+	Step step
+}
+
+json g.render(step, [resolveTemplate: false, deep: true])
