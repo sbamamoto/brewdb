@@ -13,6 +13,18 @@ class ReceiptController {
         return [receiptList:receipts]
     }
 
+
+    // def import () {
+        
+    //     def file = request.getFile("beerxml")
+    //     if(file && !file.empty){
+    //         def newFile = File.createTempFile('grails', 'beerxml')
+    //         file.transferTo(newFile)
+    //         println ""+data
+    //     }
+    //     respond Receipt.findAll()
+    // }
+
     def show() {
         def r
         if (params['id']!='-1') { 
@@ -49,13 +61,14 @@ class ReceiptController {
     
     
     def save() {
-        def r = request.JSON
 
-        
+        def r = request.JSON
         def i = new Receipt(r[0])
         
         println "****************"
         println r[0]
+        println "****************"
+        println i.reinheitsGebot
         println "****************"
         
 //        def s = Source.findById(r[1])

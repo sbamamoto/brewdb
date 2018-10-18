@@ -5,7 +5,7 @@ class Receipt {
     String description
     String beerType
     String processType
-    String reinheitsGebot
+    boolean reinheitsGebot
     String ibu
     String wort
     String color
@@ -21,5 +21,6 @@ class Receipt {
         yeastPosition nullable:true
         sourceUrl nullable:true
         brewer nullable:true
+        reinheitsGebot nullable:true
     }
 }

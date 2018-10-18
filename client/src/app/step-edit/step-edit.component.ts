@@ -32,10 +32,12 @@ export class StepEditComponent implements OnInit {
     else {
       this.receiptId = '-1';
     }
-
+ 
     this.http.get('http://localhost:8080/step/' + this.stepId).subscribe(data => {
-      console.log(" on init Data: "+data['ingredients'][0].units);
+      console.log("##################  "+this.stepId);
+      //console.log(" on init Data: "+data['ingredients'][0].units);
       this.step = data;
+      console.log(this.step ['stepType']);
     });
 
     this.http.get('http://localhost:8080/material').subscribe(data => {
@@ -52,7 +54,11 @@ export class StepEditComponent implements OnInit {
     let m = {material:{id:ingredient.id}, units:ingredient.units, measure:ingredient.measure};
     this.step.ingredients.push(m);
     console.log(" +++++++ "+this.step.ingredients[0]);
+  }
 
+  deleteMaterial (id) {
+    let index = this.step.ingredients.map(function(x) {return x.id; }).indexOf(id);
+    this.step.ingredients.splice(index, 1);
   }
 
   saveStep(id) {

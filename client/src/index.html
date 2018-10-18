@@ -58,7 +58,13 @@
           </div>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
+      <form action="http://localhost:8080/beerXml" id="fileform" name="fileform" class="form-inline my-2 my-lg-0" method="POST" enctype='multipart/form-data'>
+      <form id="fileform" name="fileform" class="form-inline my-2 my-lg-0">
+        <div style="margin-right: 10px;"> 
+          <label class="file-upload btn btn-primary">
+            Import <input type="file" id="beerxml" name="beerxml" hidden/>
+          </label>
+        </div>
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
@@ -67,6 +73,11 @@
   <app>
     Loading...
   </app>
+    <script>
+      document.getElementById("beerxml").onchange = function() {
+        document.getElementById("fileform").submit();
+      };
+    </script>
 </body>
 
 </html>

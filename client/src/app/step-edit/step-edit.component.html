@@ -10,20 +10,22 @@
           </div-->
         <div class="form-group">
           <label for="type">Typ</label>
-          <select class="custom-select" width="100" id="type" [(ngModel)]="step.stepType" name="stp.type" required>
+          <select class="custom-select" width="100" id="type" [(ngModel)]="step.stepType" name="stp.type">
             <option value="HEAT" selected>Erhitzen</option>
             <option value="MASH">Maischen</option>
             <option value="ADD">Hinzufügen</option>
             <option value="WAIT">Warten</option>
             <option value="LAUTER">Läutern</option>
             <option value="COOK">Kochen</option>
+            <option value="WHIRL">Whirlpool</option>
+            <option value="CHILL">Abkühlen</option>
             <option value="FERMENT">Gären</option>
             <option value="STORE">Lagern</option>
           </select>
         </div>
         <div class="form-group">
           <label for="name">Name</label>
-          <input type="text" size="80" class="form-control" id="name" placeholder="Bescheibender Name" [(ngModel)]="step.name" name="stp.name"
+          <input type="text" size="80" class="form-control" id="name" placeholder="Beschreibender Name" [(ngModel)]="step.name" name="stp.name"
             required>
         </div>
         <div class="form-group">
@@ -61,23 +63,23 @@
       <h2 style="display: inline;">Zutaten</h2> <a class="fas fa-edit" href="#" data-toggle="modal" data-target="#myModal" style="font-size: 1.3em;"></a>
       </span>
       <ul class="list-group">
-        <ng-container *ngFor="let material of step.ingredients">
+        <ng-container *ngFor="let ingredient of step.ingredients">
           <li class="list-group-item flex-column align-items-start">
             <div class="d-flex flex-row">
-              <h5 class="mb-1 p-2">{{material.name}}</h5>
-              <span class="fas fa-trash-alt p-2 ml-auto" style="font-size: 1.3em;" (click)="id=receipt.id"></span>
+              <h5 class="mb-1 p-2">{{ingredient.material.name}}</h5>
+              <span class="fas fa-trash-alt p-2 ml-auto" style="font-size: 1.3em;" (click)="deleteMaterial(ingredient.id)"></span>
             </div>
             <div class="d-flex flex-row">
               <div class="p-2">
                 <div class="form-group">
                   <label for="measure">Menge</label>
-                  <input type="text" size="10" class="form-control" id="measure" [(ngModel)]="material.measure" placeholder="Menge">
+                  <input type="text" size="10" class="form-control" id="measure" [(ngModel)]="ingredient.measure" placeholder="Menge">
                 </div>
               </div>
               <div class="p-2">
                 <div class="form-group">
                   <label for="unit">Einheit</label>
-                  <select class="custom-select" width="100" id="units" name="units" [(ngModel)]="material.units" required>
+                  <select class="custom-select" width="100" id="units" name="units" [(ngModel)]="ingredient.units" required>
                     <option value="GRAM" selected>Gramm</option>
                     <option value="KILO">Kilogramm</option>
                     <option value="LITER">Liter</option>
