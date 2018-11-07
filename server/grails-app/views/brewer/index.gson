@@ -1,0 +1,9 @@
+import server.Brewer
+
+model {
+	Iterable<Brewer> brewerList
+}
+
+json tmpl.brewer(brewerList ?: [])
+
+

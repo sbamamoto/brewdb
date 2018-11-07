@@ -13,7 +13,8 @@ import {ReceiptComponent} from "./receipt/receipt.component";
 import {ReceiptEditComponent} from "./receipt-edit/receipt-edit.component";
 import {StepComponent} from "./step/step.component";
 import {StepEditComponent} from "./step-edit/step-edit.component";
-
+import {BrewerComponent} from "./brewer/brewer.component";
+import {BrewerEditComponent} from "./brewer-edit/brewer-edit.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/receipts', pathMatch: 'full'},
@@ -37,7 +38,11 @@ const routes: Routes = [
   {path: 'step-up/:id/:up', component: StepComponent, data: {title: 'One Step Up'}},
   {path: 'step/:id', component: StepComponent, data: {title: 'Step Delete'}},
   {path: 'step-edit/:id/:receiptId', component: StepEditComponent, data: {title: 'Step Edit'}},
-  {path: 'step-edit', component: StepEditComponent, data: {title: 'Step Add'}} 
+  {path: 'step-edit', component: StepEditComponent, data: {title: 'Step Add'}},
+  {path: 'brewers', component: BrewerComponent, data: {title: 'Brewers List'}},
+  {path: 'brewer/:id', component: BrewerComponent, data: {title: 'Brewer Delete'}},
+  {path: 'brewer-edit/:id', component: BrewerEditComponent, data: {title: 'Brewer Edit'}},
+  {path: 'brewer-edit', component: BrewerEditComponent, data: {title: 'Brewer Add'}},
 ];
  
 @NgModule({

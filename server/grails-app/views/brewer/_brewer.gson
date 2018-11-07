@@ -1,0 +1,7 @@
+import server.Brewer
+
+model {
+	Brewer brewer
+}
+
+json g.render(brewer, [resolveTemplate: false, deep: true])
