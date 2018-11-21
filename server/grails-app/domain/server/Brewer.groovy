@@ -5,8 +5,12 @@ class Brewer {
     String lastname
     String userId
     String password
-    boolean isActive
-    boolean canWrite
+    Date lastLogin
+    Date lastPublished
+    Integer receiptsPublished = 0
+    Integer receiptsConfirmed = 0
+    boolean isActive = true
+    boolean canWrite = false
     
     static hasMany = [
         profiles:Profile,
@@ -14,5 +18,9 @@ class Brewer {
     ]
 
     static constraints = {
+        firstname nullable:true
+        lastname nullable:true
+        lastLogin nullable:true
+        lastPublished nullable:true
     }
 }

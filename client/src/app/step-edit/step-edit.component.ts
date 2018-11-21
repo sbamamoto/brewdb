@@ -33,14 +33,14 @@ export class StepEditComponent implements OnInit {
       this.receiptId = '-1';
     }
  
-    this.http.get('http://localhost:8080/step/' + this.stepId).subscribe(data => {
+    this.http.get('/api/step/' + this.stepId).subscribe(data => {
       console.log("##################  "+this.stepId);
       //console.log(" on init Data: "+data['ingredients'][0].units);
       this.step = data;
       console.log(this.step ['stepType']);
     });
 
-    this.http.get('http://localhost:8080/material').subscribe(data => {
+    this.http.get('/api/material').subscribe(data => {
       console.log(data);
       this.materialList = data;
       console.log(this.materialList);

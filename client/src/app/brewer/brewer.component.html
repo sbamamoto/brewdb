@@ -1,26 +1,28 @@
 <div class="container">
-  <div class="row">
-    <h2>Brauerdaten</h2>
+
+  <h2>Brauerdaten
     <a [routerLink]="['/brewer-edit']" class="btn btn-default btn-lg">
       <span class="glyphicon glyphicon-plus" aria-hidden="true">+</span>
-  </a>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let brewer of brewers">
-          <th>{{brewer.userId}}</th>
-          <td>{{brewer.firstname}}</td>
-          <td>{{brewer.lastname}}</td>
-          <td>{{brewer.isActive}}</td>
-        </tr>
-      </tbody>
-    </table>
+    </a>
+  </h2>
+
+
+  <div class="list-group">
+    <ng-container *ngFor="let brewer of brewers">
+      <a href="/#/brewer-edit/{{brewer.id}}" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{brewer.firstname}} {{brewer.lastname}}</h5>
+          <span>
+            <a class="fas fa-edit" href="/#/brewer-edit/{{brewer.id}}" data-toggle="tooltip" title="Brauer bearbeiten"
+              style="font-size: 1.3em;"></a>
+            <a class="fas fa-user-circle" href="/#/profile/{{brewer.id}}" data-toggle="tooltip" title="Profil bearbeiten"
+              style="font-size: 1.3em;"></a>
+          </span>
+        </div>
+        <p class="mb-1">{{brewer.lastLogin}}</p>
+        <small><b>Alkohol:</b> tt <b>Stammwürze:</b> tt<b>Bittere:</b>
+          tt IBU <b>Farbe:</b> tt EBC</small>
+      </a>
+    </ng-container>
   </div>
 </div>

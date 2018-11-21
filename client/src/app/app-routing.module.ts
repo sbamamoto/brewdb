@@ -15,6 +15,7 @@ import {StepComponent} from "./step/step.component";
 import {StepEditComponent} from "./step-edit/step-edit.component";
 import {BrewerComponent} from "./brewer/brewer.component";
 import {BrewerEditComponent} from "./brewer-edit/brewer-edit.component";
+import {BrewerDetailComponent} from "./brewer-detail/brewer-detail.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/receipts', pathMatch: 'full'},
@@ -43,6 +44,8 @@ const routes: Routes = [
   {path: 'brewer/:id', component: BrewerComponent, data: {title: 'Brewer Delete'}},
   {path: 'brewer-edit/:id', component: BrewerEditComponent, data: {title: 'Brewer Edit'}},
   {path: 'brewer-edit', component: BrewerEditComponent, data: {title: 'Brewer Add'}},
+  {path: 'brewer-details', component: BrewerDetailComponent, data: {title: 'Brewers List'}},
+  {path: 'brewer-details/:id', component: BrewerDetailComponent, data: {title: 'Brewer Delete'}},
 ];
  
 @NgModule({

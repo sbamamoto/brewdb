@@ -21,9 +21,9 @@ import { ReceiptComponent } from './receipt/receipt.component';
 import { ReceiptEditComponent } from './receipt-edit/receipt-edit.component';
 import { StepComponent } from './step/step.component';
 import { StepEditComponent } from './step-edit/step-edit.component';
-import { ProfileComponent } from './profile/profile.component';
 import { BrewerComponent } from './brewer/brewer.component';
 import { BrewerEditComponent } from './brewer-edit/brewer-edit.component';
+import { BrewerDetailComponent } from './brewer-detail/brewer-detail.component';
 
 
 @NgModule({
@@ -43,9 +43,9 @@ import { BrewerEditComponent } from './brewer-edit/brewer-edit.component';
     ReceiptEditComponent,
     StepComponent,
     StepEditComponent,
-    ProfileComponent,
     BrewerComponent,
-    BrewerEditComponent
+    BrewerEditComponent,
+    BrewerDetailComponent
   ],
   imports: [
     BrowserModule,
