@@ -1,6 +1,8 @@
 <div class="container">
+  <div>
+    <h2>Brauer Basisdaten</h2>
+  </div>
   <div class="row">
-    <h2>Brauer</h2>
     <form (ngSubmit)="saveBrewer(brewer.id)" #receiptForm="ngForm">
       <div class="form-group">
         <label for="firstname">Vorname</label>
@@ -9,7 +11,7 @@
       </div>
       <div class="form-group">
         <label for="lastname">Nachname</label>
-        <input type="text" size="80"class="form-control" id="lastname" placeholder="" rows="6" [(ngModel)]="brewer.lastname"
+        <input type="text" size="80" class="form-control" id="lastname" placeholder="" rows="6" [(ngModel)]="brewer.lastname"
           name="brewer.lastname">
       </div>
       <div class="form-group">
@@ -22,12 +24,10 @@
         <input type="text" size="80" class="form-control" id="password" placeholder="" rows="6" [(ngModel)]="brewer.password"
           name="brewer.password">
       </div>
-
-
       <div class="form-group">
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="isActive" [(ngModel)]="brewer.isActive"
-            ng-false-value="false" ng-true-value="true" name="brewer.isActive">
+          <input class="form-check-input" type="checkbox" id="isActive" [(ngModel)]="brewer.isActive" ng-false-value="false"
+            ng-true-value="true" name="brewer.isActive">
           <label class="form-check-label" for="isActive">
             Ist aktiv
           </label>
@@ -35,8 +35,8 @@
       </div>
       <div class="form-group">
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="canWrite" [(ngModel)]="brewer.canWrite"
-            ng-false-value="false" ng-true-value="true" name="brewer.canWrite">
+          <input class="form-check-input" type="checkbox" id="canWrite" [(ngModel)]="brewer.canWrite" ng-false-value="false"
+            ng-true-value="true" name="brewer.canWrite">
           <label class="form-check-label" for="canWrite">
             Kann veröffentlichen
           </label>

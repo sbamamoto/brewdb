@@ -15,13 +15,13 @@
           <span>
             <a class="fas fa-edit" href="/#/brewer-edit/{{brewer.id}}" data-toggle="tooltip" title="Brauer bearbeiten"
               style="font-size: 1.3em;"></a>
-            <a class="fas fa-user-circle" href="/#/profile/{{brewer.id}}" data-toggle="tooltip" title="Profil bearbeiten"
+            <a class="fas fa-user-circle" href="/#/brewer-details/{{brewer.id}}" data-toggle="tooltip" title="Profil bearbeiten"
               style="font-size: 1.3em;"></a>
           </span>
         </div>
-        <p class="mb-1">{{brewer.lastLogin}}</p>
-        <small><b>Alkohol:</b> tt <b>Stammwürze:</b> tt<b>Bittere:</b>
-          tt IBU <b>Farbe:</b> tt EBC</small>
+        <p class="mb-1">Letzte Anmeldung: {{brewer.lastLogin}}</p>
+        <small><b>Aktiv:</b> {{brewer.isActive}} <b> Schreibrecht:</b> {{brewer.canWrite}}<b> Veröffentlicht:</b>
+          {{brewer.receiptsPublished}} Rezepte <b>Bestätigt:</b> {{brewer.receiptsConfirmed}} Rezepte</small>
       </a>
     </ng-container>
   </div>

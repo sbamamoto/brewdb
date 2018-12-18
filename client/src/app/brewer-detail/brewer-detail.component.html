@@ -1,3 +1,126 @@
-<p>
-  brewer-detail works!
-</p>
+<div class="container">
+
+  <div class="row">
+    <h2>Ausrüstung</h2>
+  </div>
+  <div class="row">  
+    <div id="accordion" class="col-sm-10">
+ 
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
+              aria-controls="collapseOne">
+              Maischekessel
+            </button>
+          </h2>
+        </div>
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body">
+            <form (ngSubmit)="saveMashTun(mash.id, brewer.id)" #receiptForm="ngForm">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" size="80" class="form-control" id="name" placeholder="Name oder Type des Kessels"
+                  [(ngModel)]="mash.name" name="mash.name">
+              </div>
+              <div class="form-group">
+                <label for="name">Produkt</label>
+                <input type="text" size="80" class="form-control" id="product" placeholder="Name des Kessels"
+                  [(ngModel)]="mash.product" name="mash.product">
+              </div>
+              <div class="form-group">
+                <label for="name">Volumen</label>
+                <input type="text" size="10" class="form-control" id="volume" placeholder="Volumen in Litern"
+                  [(ngModel)]="mash.volume" name="mash.volume">
+              </div>
+              <div class="form-group">
+                <label for="name">Größe</label>
+                <input type="text" size="80" class="form-control" id="product" placeholder="Größe des Kessels"
+                  [(ngModel)]="mash.size" name="mash.size">
+              </div>
+              <div class="form-group">
+                  <button type="submit" class="btn btn-outline-success">Speichern</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+              aria-controls="collapseTwo">
+              Läuterbottich
+            </button>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+          <div class="card-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon
+            officia aute,
+            non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
+            tempor,
+            sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+            helvetica,
+            craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
+            Leggings
+            occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them
+            accusamus
+            labore sustainable VHS.
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+              aria-controls="collapseThree">
+              Hopfenkocher
+            </button>
+          </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+          <div class="card-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon
+            officia aute,
+            non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
+            tempor,
+            sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+            helvetica,
+            craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
+            Leggings
+            occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them
+            accusamus
+            labore sustainable VHS.
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingFour">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+              aria-controls="collapseThree">
+              Gäreimer
+            </button>
+          </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+          <div class="card-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon
+            officia aute,
+            non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
+            tempor,
+            sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+            helvetica,
+            craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
+            Leggings
+            occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them
+            accusamus
+            labore sustainable VHS.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>

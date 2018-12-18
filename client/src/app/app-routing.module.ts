@@ -44,7 +44,6 @@ const routes: Routes = [
   {path: 'brewer/:id', component: BrewerComponent, data: {title: 'Brewer Delete'}},
   {path: 'brewer-edit/:id', component: BrewerEditComponent, data: {title: 'Brewer Edit'}},
   {path: 'brewer-edit', component: BrewerEditComponent, data: {title: 'Brewer Add'}},
-  {path: 'brewer-details', component: BrewerDetailComponent, data: {title: 'Brewers List'}},
   {path: 'brewer-details/:id', component: BrewerDetailComponent, data: {title: 'Brewer Delete'}},
 ];
  

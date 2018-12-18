@@ -44,7 +44,7 @@ export class BrewerEditComponent implements OnInit {
       );
     }
     else {
-      this.http.put('/api/brewer' + id, [this.brewer]).subscribe(res => {
+      this.http.put('/api/brewer/' + id, [this.brewer]).subscribe(res => {
         let id = res['id'];
         this.router.navigate(['/brewers/']);
       }, (err) => {

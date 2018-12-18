@@ -26,6 +26,17 @@ class BrewerController {
         return [brewerList:brewers]
     }
 
+    def update() {
+        def r = request.JSON
+        println ("update ---- "+r)
+        def i = Brewer.findById(params['id'])
+
+        i.properties = r[0]
+
+        i.save(flush:true)
+        respond Brewer.findAll()
+    }
+
     def save() {
 
         def r = request.JSON
