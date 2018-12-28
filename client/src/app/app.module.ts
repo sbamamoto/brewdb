@@ -24,6 +24,7 @@ import { StepEditComponent } from './step-edit/step-edit.component';
 import { BrewerComponent } from './brewer/brewer.component';
 import { BrewerEditComponent } from './brewer-edit/brewer-edit.component';
 import { BrewerDetailComponent } from './brewer-detail/brewer-detail.component';
+import { AccountComponent } from './account/account.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { BrewerDetailComponent } from './brewer-detail/brewer-detail.component';
     StepEditComponent,
     BrewerComponent,
     BrewerEditComponent,
-    BrewerDetailComponent
+    BrewerDetailComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,

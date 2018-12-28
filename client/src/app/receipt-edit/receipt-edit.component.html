@@ -4,26 +4,31 @@
     <form (ngSubmit)="saveReceipt(receipt.id)" #receiptForm="ngForm">
       <div class="form-group">
         <label for="name">Rezeptname</label>
-        <input type="text" size="80" class="form-control" id="name" placeholder="Name des Rezeptes" [(ngModel)]="receipt.name" name="rcpt.name" required>
+        <input type="text" size="80" class="form-control" id="name" placeholder="Name des Rezeptes" [(ngModel)]="receipt.name"
+          name="rcpt.name" required>
       </div>
       <div class="form-group">
         <label for="description">Beschreibung</label>
-        <textarea class="form-control" id="description" placeholder="Beschreibung" rows="6" [(ngModel)]="receipt.description" name="rcpt.description" required></textarea>
+        <textarea class="form-control" id="description" placeholder="Beschreibung" rows="6" [(ngModel)]="receipt.description"
+          name="rcpt.description" required></textarea>
       </div>
       <div class="form-group">
         <label for="beerType">Biertyp</label>
-        <input type="text" size="80" class="form-control" id="beerType" placeholder="Biertyp" [(ngModel)]="receipt.beerType" name="rcpt.beerType" required>
+        <input type="text" size="80" class="form-control" id="beerType" placeholder="Biertyp" [(ngModel)]="receipt.beerType"
+          name="rcpt.beerType" required>
       </div>
       <div class="form-group">
         <label for="processType">Preference</label>
-        <select class="custom-select" width="100" id="processType" [(ngModel)]="receipt.processType" name="rcpt.processType" required>
+        <select class="custom-select" width="100" id="processType" [(ngModel)]="receipt.processType" name="rcpt.processType"
+          required>
           <option value="INF" selected>Infusion</option>
           <option value="DEK">Dekoktion</option>
         </select>
       </div>
       <div class="form-group">
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="reinheitsGebot" [(ngModel)]="receipt.reinheitsGebot" ng-false-value="false" ng-true-value="true" name="rcpt.reinheitsGebot">
+          <input class="form-check-input" type="checkbox" id="reinheitsGebot" [(ngModel)]="receipt.reinheitsGebot"
+            ng-false-value="false" ng-true-value="true" name="rcpt.reinheitsGebot">
           <label class="form-check-label" for="reinheitsGebot">
             Reinheitsgebot
           </label>
@@ -37,7 +42,8 @@
             <div class="input-group-prepend">
               <div class="input-group-text">%alc</div>
             </div>
-            <input type="text" class="form-control" id="alcohol" placeholder="Alkoholgehalt" [(ngModel)]="receipt.alcohol" name="rcpt.alcohol" required>
+            <input type="text" class="form-control" id="alcohol" placeholder="Alkoholgehalt" [(ngModel)]="receipt.alcohol"
+              name="rcpt.alcohol" required>
           </div>
         </div>
         <div class="col-auto">
@@ -46,7 +52,8 @@
             <div class="input-group-prepend">
               <div class="input-group-text">°P</div>
             </div>
-            <input type="text" class="form-control" id="wort" placeholder="Stammwürze" [(ngModel)]="receipt.wort" name="rcpt.wort" required>
+            <input type="text" class="form-control" id="wort" placeholder="Stammwürze" [(ngModel)]="receipt.wort" name="rcpt.wort"
+              required>
           </div>
         </div>
         <div class="col-auto">
@@ -55,7 +62,8 @@
             <div class="input-group-prepend">
               <div class="input-group-text">EBC</div>
             </div>
-            <input type="text" class="form-control" id="color" placeholder="Farbe" [(ngModel)]="receipt.color" name="rcpt.color" required>
+            <input type="text" class="form-control" id="color" placeholder="Farbe" [(ngModel)]="receipt.color" name="rcpt.color"
+              required>
           </div>
         </div>
         <div class="col-auto">
@@ -64,82 +72,53 @@
             <div class="input-group-prepend">
               <div class="input-group-text">IBU</div>
             </div>
-            <input type="text" class="form-control" id="ibu" placeholder="Bittere" [(ngModel)]="receipt.ibu" name="rcpt.ibu" required>
+            <input type="text" class="form-control" id="ibu" placeholder="Bittere" [(ngModel)]="receipt.ibu" name="rcpt.ibu"
+              required>
           </div>
         </div>
       </div>
+
+
+      <div class="form-group">
+        <label for="carbonisation">Karbonisierung</label>
+        <input type="text" size="10" class="form-control" id="carbonisation" placeholder="Karbonisierung" [(ngModel)]="receipt.carbonisation"
+          name="rcpt.carbonisation" required>
+      </div>      
+      <div class="form-group">
+        <label for="water">Wassermenge</label>
+        <input type="text" size="10" class="form-control" id="water" placeholder="Wassermenge" [(ngModel)]="receipt.water"
+          name="rcpt.water" required>
+      </div>
+      <div class="form-group">
+        <label for="meshWater">Hauptguss</label>
+        <input type="text" size="10" class="form-control" id="meshWater" placeholder="Hauptguss" [(ngModel)]="receipt.meshWater"
+          name="rcpt.meshWater" required>
+      </div>
       <div class="btn-group" data-toggle="buttons">
         <label class="btn">
-          <input type="radio" id="yeastPositionUG" value="OG" [(ngModel)]="receipt.yeastPosition" name="yeastPosition"> obergärig
+          <input type="radio" id="yeastPositionUG" value="OG" [(ngModel)]="receipt.yeastPosition" name="yeastPosition">
+          obergärig
         </label>
         <label class="btn btn">
-          <input type="radio" id="yeastPositionOG" value="UG" [(ngModel)]="receipt.yeastPosition" name="yeastPosition"> untergärig
+          <input type="radio" id="yeastPositionOG" value="UG" [(ngModel)]="receipt.yeastPosition" name="yeastPosition">
+          untergärig
         </label>
       </div>
       <div class="input-group mb-2">
         <div class="input-group-prepend">
           <div class="input-group-text">URL</div>
         </div>
-        <input type="text" class="form-control" id="sourceUrl" placeholder="Quelle des Rezeptes" [(ngModel)]="receipt.sourceUrl" name="rcpt.sourceUrl">
+        <input type="text" class="form-control" id="sourceUrl" placeholder="Quelle des Rezeptes" [(ngModel)]="receipt.sourceUrl"
+          name="rcpt.sourceUrl">
       </div>
       <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <div class="input-group-text">Author</div>
-          </div>
-          <input type="text" class="form-control" id="author" placeholder="Author" [(ngModel)]="receipt.brewer" name="rcpt.author">
+        <div class="input-group-prepend">
+          <div class="input-group-text">Author</div>
         </div>
+        <input type="text" class="form-control" id="author" placeholder="Author" [(ngModel)]="receipt.brewer" name="rcpt.author">
+      </div>
       <div class="form-group">
         <button type="submit" class="btn btn-outline-success">Speichern</button>
       </div>
     </form>
   </div>
-  <div class="row">
-    <!--div class="col-sm">
-      <h2>Data Input</h2>
-      <form>
-        <div class="form-group">
-          <label for="exampleFormControlSelect1">Schritt</label>
-          <select class="custom-select" id="exampleFormControlSelect1">
-            <option>Einmaischen</option>
-            <option>Rasten</option>
-            <option>Läutern</option>
-            <option>Hopfenkochen</option>
-            <option>Ruhen</option>
-            <option>Whirlpool</option>
-            <option>Ausschlagen</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Temperatur</label>
-          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Temperatur des Sudes wenn geheizt wird.">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Dauer</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Dauer in Minuten">
-        </div>
-
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary">Zutaten hinzufügen</button>
-          <ul class="list-group">
-            <li class="list-group-item disabled">Keine Zutaten</li>
-          </ul>
-        </div>
-
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary">Ausrüstung hinzufügen</button>
-          <ul class="list-group">
-            <li class="list-group-item disabled">Keine Ausrüstung</li>
-          </ul>
-        </div>
-
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </div>
-    <div class="col-sm"-->
-  
-  <!--/div-->
-</div>

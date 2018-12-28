@@ -4,6 +4,7 @@ class Step {
 
     String name
     String stepType
+    String startTime
     String duration
     String timeUnit
     String temperature
@@ -13,6 +14,7 @@ class Step {
     
     static hasMany = [
         ingredients:Ingredient, 
+        hops:Hop,
         equipment:Material
     ]
     
