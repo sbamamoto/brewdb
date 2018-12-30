@@ -7,6 +7,8 @@ import server.Receipt
 import server.Step
 import server.Material
 import server.Ingredient
+import server.Profile
+import server.Hop
 
 class BeerXmlController {
     static responseFormats = ['json', 'xml']
@@ -27,8 +29,11 @@ class BeerXmlController {
         plato = plato.round(1)
         return plato
     }
-
-    def processHopSteps (recipe, stepOrder, receipt) {
+    
+    def getDouble = { it?.isDouble() ? Double.parseDouble(it) : null }
+    
+    def processHopSteps (recipe, stepOrder, receipt, startTime) {
+        Integer stepStartMinute = startTime
         def hopTimings = [:]
         def i = stepOrder
         recipe.RECIPE.HOPS.HOP.findAll().each {
@@ -46,40 +51,45 @@ class BeerXmlController {
         def step = new Step()
         step.name = "Hopfenkochen"
         step.stepType = "COOK"
-        step.duration = recipe.RECIPE.BOIL_TIME.text()
+        step.duration = Double.parseDouble(recipe.RECIPE.BOIL_TIME.text()).intValue() // FIXME: add heatup time from end of lauter temperature to 100 degress
         step.timeUnit = "MIN"
-        step.temperature = "100"
+        step.temperature = 100
+        step.startTime = stepStartMinute
         step.orderNumber = i++
 
         def material = Material.findByType("Wasser")
+
         def ingredient = new Ingredient()
         ingredient.measure = receipt.water
         ingredient.units = "LITER"
         ingredient.material = material
+        ingredient.temperature = 20
         step.addToIngredients(ingredient).save() 
-        println step.name          
+         
         receipt.addToSteps(step).save() 
 
         // calculating hop adding times
-        Integer intervalStart = Integer.parseInt(step.duration)
-        Integer addTime = Integer.parseInt(step.duration)
+        Integer intervalStart = step.duration
+        Integer addTime = step.duration
         hopMinutes.each() {
             //intervalStart = Integer.parseInt(recipe.RECIPE.BOIL_TIME) - Integer.parseInt(it)
-            addTime = Integer.parseInt(recipe.RECIPE.BOIL_TIME.text()) - Integer.parseInt(it)
+            addTime = Double.parseDouble(recipe.RECIPE.BOIL_TIME.text()).intValue() - Double.parseDouble(it).intValue()
             println (hopTimings.get(it).NAME + " - " + it)
             step = new Step()
             step.name = "Hopfenkochen"
             step.stepType = "ADD"
-            step.duration = ""
+            step.duration = 0
+            step.startTime = stepStartMinute+(Double.parseDouble(recipe.RECIPE.BOIL_TIME.text()).intValue()-Double.parseDouble(it)).intValue()
             step.timeUnit = "MIN"
-            step.temperature = "100"
+            step.temperature = 100
             step.orderNumber = i++
             println step.name     
             hopTimings[it].each() {
                 material = Material.findByName(it.NAME.text())
                 ingredient = new Ingredient()
+                ingredient.temperature = 20
                 ingredient.measure = it.AMOUNT.text()
-                ingredient.units = "GRAMM"
+                ingredient.units = "KILO"
                 ingredient.material = material
                 step.addToIngredients(ingredient).save()  
             }
@@ -89,8 +99,13 @@ class BeerXmlController {
         return hopTimings
     }
 
+
+
+
     def save () {
         println request
+        def profile = Profile.findByProfileName("REFERENCEPROFILE")
+        
         def file = request.getFile("beerxml")
         if(file && !file.empty){
             def newFile = File.createTempFile('grails', 'beerxml')
@@ -106,6 +121,7 @@ class BeerXmlController {
                     material.type = "Malz"
                     material.name = it.NAME
                     material.value = it.COLOR
+                    material.notes = it.NOTES
                     if (!material.save(flush:true)) {
                         material.errors.allErrors.each {
                             println it
@@ -119,15 +135,35 @@ class BeerXmlController {
                 println "#### "+it.NAME
                 println "---- ["+material+"]"
                 if (!material) {
+                    def hop = new Hop()
+                    hop.type = it.TYPE
+                    hop.name = it.NAME
+                    hop.notes = it.NOTES
+                    hop.alpha = getDouble(it.ALPHA.text())
+                    hop.beta = getDouble(it.BETA.text())
+                    hop.hsi = getDouble(it.HSI.text())
+                    hop.origin = it.ORIGIN 
+                    hop.humulene = getDouble(it.HUMULENE.text())
+                    hop.caryophylene = getDouble(it.CARYOPHYLENE.text())
+                    hop.mycrene = getDouble(it.MYCRENE.text())
+                    hop.form = it.FORM
+                    if (!hop.save(flush:true)) {
+                        hop.errors.allErrors.each {
+                            println "* HOPSAVE * " + it
+                        }
+                    }
+
                     material = new Material()
                     material.type = "Hopfen"
                     material.name = it.NAME
                     material.value = it.ALPHA
+                    material.notes = it.NOTES
                     if (!material.save(flush:true)) {
                         material.errors.allErrors.each {
-                            println it
+                            println "* HOPMATERIALSAVE *" + it
                         }
                     }
+
                 }                
             }
 
@@ -145,7 +181,7 @@ class BeerXmlController {
                     material.value = it.MIN_TEMPERATURE
                     if (!material.save(flush:true)) {
                         material.errors.allErrors.each {
-                            println it
+                            println "* YEASTMATERIALSAVE *" + it
                         }
                     }
                 }                
@@ -161,7 +197,7 @@ class BeerXmlController {
             receipt.brewer = recipes.RECIPE.BREWER
             receipt.alcohol = "0"
             receipt.color = "0"
-            receipt.ibu = "0"
+            receipt.ibu = getDouble(recipes.RECIPE.ibu.text())
             receipt.carbonisation = recipes.RECIPE.CARBONATION
             receipt.water = recipes.RECIPE.BOIL_SIZE
             receipt.finalGravity = gravityToPlato(recipes.RECIPE.FG.text())
@@ -186,19 +222,21 @@ class BeerXmlController {
             }
             println receipt.id
             int i = 0
+            Integer stepStartMinute = 0
+
             recipes.RECIPE.MASH.MASH_STEPS.findAll().each {
                 def step = new Step()
                 step.name = it.MASH_STEP.NAME
                 step.stepType = it.MASH_STEP.TYPE
-                step.duration = it.MASH_STEP.STEP_TIME
+                step.startTime = stepStartMinute
                 step.timeUnit = "MIN"
-                step.temperature = it.MASH_STEP.STEP_TEMP
+                step.temperature = Double.parseDouble(it.MASH_STEP.STEP_TEMP.text()).intValue()
                 step.orderNumber = i++
                 println step.name
                 if (it.MASH_STEP.TYPE) {                  // check for mashing type
                     switch (it.MASH_STEP.TYPE) {
                         case "Infusion": 
-                            step.stepType ="MASH" 
+                            step.stepType ="HEAT" 
                             receipt.processType = "INF"
                             break      
                         
@@ -215,27 +253,79 @@ class BeerXmlController {
                             break
                     }
                     if (it.MASH_STEP.TYPE == "Infusion") {     // we look for infusion
+                        println " ***** Running Infusion"
+                        // Heat Water
+                        // Lauter
                         def material = Material.findByType("Wasser")
                         def ingredient = new Ingredient()
+                        
                         ingredient.material = material
-
-                        step.stepType = "MASH"
+                        ingredient.temperature = 20
                         ingredient.measure = it.MASH_STEP.INFUSE_AMOUNT
                         ingredient.units = "LITER"
-                        step.addToIngredients(ingredient).save()                    
+                        step.addToIngredients(ingredient).save()    
+                        step.duration = (Double.parseDouble(it.MASH_STEP.STEP_TEMP.text()).intValue() - ingredient.temperature)/profile.mashTun.heatRate
+                        step.temperature = Double.parseDouble(it.MASH_STEP.STEP_TEMP.text())
+
+                        stepStartMinute += step.duration
+                        step.name = "Heizen"
+                        receipt.addToSteps(step).save()
+
+                        // Add Malt
+                        step = new Step()
+                        step.stepType = "ADD"
+                        step.name = "Einmaischen"
+                        step.startTime = stepStartMinute
+                        step.duration = 0
+                        step.timeUnit = "MIN"
+                        step.orderNumber = i++
                         recipes.RECIPE.FERMENTABLES.FERMENTABLE.findAll().each {
                             ingredient = new Ingredient()
                             material = Material.findByName(it.NAME)
-                            println material
+                            println "Using material: "+material
                             if (material) {
                                 ingredient.material = material
-                                ingredient.units = "GRAM"
+                                ingredient.units = "KILO"
                                 ingredient.measure = it.AMOUNT
+                                ingredient.temperature = 20
                                 step.addToIngredients(ingredient).save()  
                             }
                             else {
                                 println "ERROR:  Material ["+it.NAME+"] not found"
                             }
+                        }
+                        receipt.addToSteps(step).save()
+                        
+                        //Mashing
+                        step = new Step()
+                        step.stepType = "MASH"
+                        step.name = "Maischen"
+                        step.timeUnit = "MIN"
+                        step.startTime = stepStartMinute
+                        step.duration = Double.parseDouble(it.MASH_STEP.STEP_TIME.text()).intValue()
+                        step.orderNumber = i++
+                        stepStartMinute += step.duration
+                        step.temperature = Double.parseDouble(it.MASH_STEP.STEP_TEMP.text()).intValue()
+                        receipt.addToSteps(step).save()
+
+                        // Lauter
+                        step = new Step()
+                        step.name = "Läutern"
+                        step.stepType = "LAUTER"
+                        step.temperature = Double.parseDouble(it.MASH_STEP.STEP_TEMP.text()).intValue()
+                        step.startTime = stepStartMinute
+                        step.duration = (step.temperature - ingredient.temperature)/profile.mashTun.heatRate
+                        stepStartMinute += step.duration 
+                        step.timeUnit = "MIN"
+                        step.orderNumber = i++
+                        if (getDouble(it.MASH_STEP.INFUSE_AMOUNT.text())!=null) {             
+                            material = Material.findByType("Wasser")
+                            ingredient = new Ingredient()
+                            ingredient.material = material
+                            ingredient.temperature = getDouble(it.SPARGE_TEMP.text())
+                            ingredient.measure = getDouble(recipes.RECIPE.BOIL_SIZE.text()) - getDouble(it.MASH_STEP.INFUSE_AMOUNT.text())
+                            ingredient.units = "LITER"
+                            step.addToIngredients(ingredient).save()    
                         }
                     }
                     else if (it.MASH_STEP.TYPE == "Temperature") {
@@ -244,16 +334,19 @@ class BeerXmlController {
                         def ingredient = new Ingredient()
                         ingredient.material = material
                         ingredient.measure = receipt.water
+                        ingredient.temperature = 20
                         ingredient.units = "LITER"
                         step.addToIngredients(ingredient).save()    
-                        step.duration = ""                
+                        step.duration = (Double.parseDouble(it.MASH_STEP.STEP_TEMP.text()).intValue() - ingredient.temperature)/profile.mashTun.heatRate
+
                         recipes.RECIPE.FERMENTABLES.FERMENTABLE.findAll().each {
                             ingredient = new Ingredient()
                             material = Material.findByName(it.NAME)
                             println material
                             if (material) {
+                                ingredient.temperature = 20
                                 ingredient.material = material
-                                ingredient.units = "GRAM"
+                                ingredient.units = "KILO"
                                 ingredient.measure = it.AMOUNT
                                 step.addToIngredients(ingredient).save()  
                             }
@@ -262,15 +355,17 @@ class BeerXmlController {
                             }
                         }
                         step.name = "Ansetzen"
-                        step.temperature = ""
+                        step.temperature = 20
                         receipt.addToSteps(step).save()
                         // Heat up Mash
                         step = new Step()
-                        step.name = "Heizen"
-                        step.stepType = "HEAT"
-                        step.duration = ""
-                        step.timeUnit = "MIN"
-                        step.temperature = it.MASH_STEP.STEP_TEMP
+                        step.name = "Heizen"                            //FIXME: i18n support
+                        step.stepType = "HEAT"  
+                        step.startTime = stepStartMinute
+                        step.temperature = Double.parseDouble(it.MASH_STEP.STEP_TEMP.text()).intValue()
+                        step.duration = (step.temperature - ingredient.temperature)/profile.mashTun.heatRate
+                        step.timeUnit = "MIN" 
+                        
                         step.orderNumber = i++
                         println step.name          
                         receipt.addToSteps(step).save()              
@@ -278,9 +373,11 @@ class BeerXmlController {
                         step = new Step()
                         step.name = "Maischen"
                         step.stepType = "WAIT"
-                        step.duration = it.MASH_STEP.STEP_TIME
+                        step.startTime = stepStartMinute
+                        step.duration = Double.parseDouble(it.MASH_STEP.STEP_TIME.text()).intValue()
+                        stepStartMinute += step.duration 
                         step.timeUnit = "MIN"
-                        step.temperature = it.MASH_STEP.STEP_TEMP
+                        step.temperature = Double.parseDouble(it.MASH_STEP.STEP_TEMP.text()).intValue()
                         step.orderNumber = i++
                         println step.name
                         // Lauter
@@ -288,16 +385,25 @@ class BeerXmlController {
                         step = new Step()
                         step.name = "Läutern"
                         step.stepType = "LAUTER"
-                        step.duration = ""
+                        step.temperature = Double.parseDouble(it.MASH_STEP.STEP_TEMP.text()).intValue()
+                        step.startTime = stepStartMinute
+                        step.duration = (step.temperature - ingredient.temperature)/profile.mashTun.heatRate
+                        stepStartMinute += step.duration 
                         step.timeUnit = "MIN"
-                        step.temperature = it.MASH_STEP.STEP_TEMP
+                        
                         step.orderNumber = i++
                         println step.name
                     }
                 }
-                processHopSteps(recipes, i, receipt)
+                println " before hop stepping"
+                processHopSteps(recipes, i, receipt, stepStartMinute)
+                println " beforer receipt save"
                 receipt.addToSteps(step).save()
+                println " ############## step added"
             }
+            println "s## " + receipt.steps[0].name
+            println "i## " + receipt.steps[0].ingredients[0]
+            println "m## " + receipt.steps[0].ingredients[0].material
             if (!receipt.save(flush:true)) {
                 receipt.errors.allErrors.each {
                     println it

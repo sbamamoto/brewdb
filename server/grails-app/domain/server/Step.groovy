@@ -5,9 +5,9 @@ class Step {
     String name
     String stepType
     String startTime
-    String duration
+    Integer duration
     String timeUnit
-    String temperature
+    Integer temperature
     String description
     Integer orderNumber
     

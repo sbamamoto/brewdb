@@ -4,14 +4,11 @@ class Ingredient {
     
     String units
     String measure
+    Integer temperature
 
     static belongsTo = [material: Material]
  
     static mapping = {
         material lazy: false
-    }
-    
-    String toString() {
-        description + "("+type+")"
     }
 }
