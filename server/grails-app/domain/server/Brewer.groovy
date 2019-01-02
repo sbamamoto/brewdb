@@ -11,6 +11,7 @@ class Brewer {
     Integer receiptsConfirmed = 0
     boolean isActive = true
     boolean canWrite = false
+    Water water
     
     static hasMany = [
         profiles:Profile,
@@ -22,5 +23,6 @@ class Brewer {
         lastname nullable:true
         lastLogin nullable:true
         lastPublished nullable:true
+        water nullable:true
     }
 }
