@@ -18,6 +18,7 @@ class Receipt {
     String carbonisation
     String rinseWater
     String finalGravity
+    Brewer addedBy
     
     static hasMany = [steps:Step]
     
@@ -31,5 +32,6 @@ class Receipt {
         carbonisation nullable:true
         rinseWater nullable:true
         finalGravity nullable:true
+        addedBy nullable:true
     }
 }

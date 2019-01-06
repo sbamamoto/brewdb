@@ -1,4 +1,4 @@
-package class
+package server
 
 class BeerType {
     String name

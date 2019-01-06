@@ -15,13 +15,11 @@ export class BrewerEditComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router, private route:ActivatedRoute) { }
 
   ngOnInit() {
-    let id;
+    let id = '-1';
     if (this.route.snapshot.params['id'] != null) {
         id = this.route.snapshot.params['id'];
     }
-    else {
-        id = '-1';
-    }
+    
     this.http.get('/api/brewer/' + id).subscribe(data => {
         console.log(data);
         this.brewer = data;
@@ -32,6 +30,7 @@ export class BrewerEditComponent implements OnInit {
   }
 
   saveBrewer(id) {
+    console.log("##### "+id);
     if (id == null) {
       this.http.post('/api/brewer', [this.brewer]).subscribe(res => {
         console.log("brewer sent");
