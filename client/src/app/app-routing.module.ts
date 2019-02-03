@@ -39,14 +39,14 @@ const routes: Routes = [
   {path: 'receipt-edit', component: ReceiptEditComponent, data: {title: 'Receipt Add'}},
   {path: 'steps/:id', component: StepComponent, data: {title: 'Work on Steps'}},
   {path: 'step-up/:id/:up', component: StepComponent, data: {title: 'One Step Up'}},
-  {path: 'step/:id', component: StepComponent, data: {title: 'Step Delete'}},
+  {path: 'step/:id/:stepId', component: StepComponent, data: {title: 'Step Delete'}},
   {path: 'step-edit/:id/:receiptId', component: StepEditComponent, data: {title: 'Step Edit'}},
   {path: 'step-edit', component: StepEditComponent, data: {title: 'Step Add'}},
   {path: 'brewers', component: BrewerComponent, data: {title: 'Brewers List'}},
   {path: 'brewer/:id', component: BrewerComponent, data: {title: 'Brewer Delete'}},
   {path: 'brewer-edit/:id', component: BrewerEditComponent, data: {title: 'Brewer Edit'}},
   {path: 'brewer-edit', component: BrewerEditComponent, data: {title: 'Brewer Add'}},
-  {path: 'brewer-details/:id', component: BrewerDetailComponent, data: {title: 'Brewer Delete'}},
+  {path: 'brewer-details/:id', component: BrewerDetailComponent, data: {title: 'Brewer Delete'}}, 
   {path: 'account', component: AccountComponent, data: {title: 'Account'}},
 ];
  

@@ -24,7 +24,7 @@ class Receipt {
     
     static constraints = {
         yeastPosition nullable:true
-        sourceUrl nullable:true
+        sourceUrl maxSize:1024, nullable:true
         brewer nullable:true
         reinheitsGebot nullable:true
         meshWater nullable:true
@@ -33,5 +33,6 @@ class Receipt {
         rinseWater nullable:true
         finalGravity nullable:true
         addedBy nullable:true
+        description maxSize:2048, nullable:true
     }
 }

@@ -12,8 +12,8 @@ class Material {
     static belongsTo = [source: Source]
 
     static constraints = {
-        description nullable:true
-        notes nullable:true
+        description maxSize:2048, nullable:true   
+        notes maxSize:2048, nullable:true
         sourceUrl nullable:true
         source nullable:true
     }

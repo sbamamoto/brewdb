@@ -47,4 +47,13 @@ export class StepComponent implements OnInit {
     });
   }
 
+  deleteStep (stepId) {
+    this.http.delete('http://localhost:8080/step/'+this.receiptId+"?stepId="+stepId).subscribe(data => {
+      console.log(' ##### ' + data);      
+      this.stepInfo = data;
+      console.log(this.stepInfo);
+      console.log(this.stepInfo.steps);      
+    });
+  }
+
 }

@@ -20,6 +20,7 @@ class Step {
     
     static constraints = {
         timeUnit nullable:true
+        startTime nullable:true
         temperature nullable:true
         description nullable:true
         duration nullable:true
