@@ -17,6 +17,7 @@ import {BrewerComponent} from "./brewer/brewer.component";
 import {BrewerEditComponent} from "./brewer-edit/brewer-edit.component";
 import {BrewerDetailComponent} from "./brewer-detail/brewer-detail.component";
 import {AccountComponent} from "./account/account.component";
+import {StorageComponent} from "./storage/storage.component";
 
 
 const routes: Routes = [
@@ -48,6 +49,7 @@ const routes: Routes = [
   {path: 'brewer-edit', component: BrewerEditComponent, data: {title: 'Brewer Add'}},
   {path: 'brewer-details/:id', component: BrewerDetailComponent, data: {title: 'Brewer Delete'}}, 
   {path: 'account', component: AccountComponent, data: {title: 'Account'}},
+  {path: 'storage/:user', component: StorageComponent, data: {title: 'Storage'}},
 ];
  
 @NgModule({

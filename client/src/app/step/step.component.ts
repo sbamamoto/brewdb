@@ -22,8 +22,9 @@ export class StepComponent implements OnInit {
     }
    
     this.http.get('http://localhost:8080/stepList/'+this.receiptId).subscribe(data => {
-      console.log(' ##### ' + data);      
+      console.log(' ##ngoninit## ' + data);      
       this.stepInfo = data;
+      console.log('*** '+this.stepInfo.steps.length);
       console.log(this.stepInfo);
       console.log(this.stepInfo.steps);      
     });

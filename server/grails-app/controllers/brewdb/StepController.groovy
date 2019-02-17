@@ -62,7 +62,7 @@ class StepController {
                     println it
                 }
             }
-        respond Step.findAll()
+        respond r.receiptId
     }
     
     
@@ -71,7 +71,8 @@ class StepController {
 
         
         def i = new Step(r[0])
-        
+        def receipt = Receipt.findById(r.receiptId);
+
         println "****************"
         println r[0]
         println "****************"
@@ -94,7 +95,7 @@ class StepController {
                 println it
             }
         } else {
-            def receipt = Receipt.findById(r.receiptId);
+            
             receipt.addToSteps(i);
             if (!receipt.save(flush:true)) {
                 receipt.errors.allErrors.each {
@@ -103,7 +104,6 @@ class StepController {
             }
         }
 
-
-        respond Step.findAll()
+        respond r.receiptId
     }
 }
