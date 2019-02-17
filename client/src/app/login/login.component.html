@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <h2>Login</h2>
+    <div class="col-sm">
+    <form (ngSubmit)="loginUser($event)">
+      <div class="form-group">
+        <label for="name">Benutzername</label>
+        <input type="text" size="80" class="form-control" id="username" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Passwort</label>
+        <input type="password" class="form-control" id="password" required>
+      </div>
+      <div class="form-group">
+        <input type="submit" class="form-control" value="Anmelden">
+      </div>
+    </form>
+    </div>
+  </div>
+</div>

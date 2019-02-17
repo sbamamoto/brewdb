@@ -18,6 +18,8 @@ import {BrewerEditComponent} from "./brewer-edit/brewer-edit.component";
 import {BrewerDetailComponent} from "./brewer-detail/brewer-detail.component";
 import {AccountComponent} from "./account/account.component";
 import {StorageComponent} from "./storage/storage.component";
+import {LoginComponent} from "./login/login.component";
+import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [
@@ -36,7 +38,7 @@ const routes: Routes = [
   {path: 'material-edit/:id', component: MaterialEditComponent, data: {title: 'Materials Edit'}},
   {path: 'material-edit', component: MaterialEditComponent, data: {title: 'Materials Add'}},
   {path: 'receipt/:id', component: ReceiptComponent, data: {title: 'Receipt Delete'}},
-  {path: 'receipt-edit/:id', component: ReceiptEditComponent, data: {title: 'Receipt Edit'}},
+  {path: 'receipt-edit/:id', component: ReceiptEditComponent, data: {title: 'Receipt Edit'}, canActivate: [AuthGuard]},
   {path: 'receipt-edit', component: ReceiptEditComponent, data: {title: 'Receipt Add'}},
   {path: 'steps/:id', component: StepComponent, data: {title: 'Work on Steps'}},
   {path: 'step-up/:id/:up', component: StepComponent, data: {title: 'One Step Up'}},
@@ -49,7 +51,9 @@ const routes: Routes = [
   {path: 'brewer-edit', component: BrewerEditComponent, data: {title: 'Brewer Add'}},
   {path: 'brewer-details/:id', component: BrewerDetailComponent, data: {title: 'Brewer Delete'}}, 
   {path: 'account', component: AccountComponent, data: {title: 'Account'}},
-  {path: 'storage/:user', component: StorageComponent, data: {title: 'Storage'}},
+  {path: 'storage', component: StorageComponent, data: {title: 'Storage'}, canActivate: [AuthGuard]},
+  {path: 'login', component: LoginComponent, data: {title: 'Login'}},
+  
 ];
  
 @NgModule({
