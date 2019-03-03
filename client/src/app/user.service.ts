@@ -12,6 +12,8 @@ interface userData {
 @Injectable()
 export class UserService {
 
+  userData: any
+
   constructor(private http: HttpClient) { }
 
   getUserData() {

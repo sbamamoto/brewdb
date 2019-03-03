@@ -19,7 +19,7 @@ export class StorageComponent implements OnInit {
   }
 
   ngOnInit() {
-    // onaly can access storage if logged in
+    // only can access storage if logged in
       this.http.get('/api/storage').subscribe(data => {
           console.log(' ##ngoninit## ' + data);
         });

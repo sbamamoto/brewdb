@@ -10,6 +10,17 @@ import server.MaterialType
 
 class LoginController {
 static responseFormats = ['json']
+
+    def index() {
+        println (" ##### User auth request received")
+        if (session['user']) {
+            render session['user'] as JSON
+        }
+        else {
+            render '{"isActive": false}'
+        }
+    }
+
 def save() {
         def r = request.JSON
         println "****************"
@@ -22,6 +33,7 @@ def save() {
         if (user) {
             println r.password.encodeAsSHA256() + "==" + user.password
             if (r.password.encodeAsSHA256() == user.password) {
+                println ("Logged In !");
                 session['user'] = user
                 render user as JSON
             }
@@ -35,6 +47,7 @@ def save() {
     }
 
     def show() {
+        println (" ##### User auth request received")
         if (session['user']) {
             render session['user'] as JSON
         }

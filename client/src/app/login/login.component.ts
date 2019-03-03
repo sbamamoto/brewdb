@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
       else {
         console.log("User logged in")
         this.Auth.setLoggedIn(true)
+        this.router.navigate(["receipts"])
       }
     })
   }

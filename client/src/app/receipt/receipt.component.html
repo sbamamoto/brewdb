@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Receipt List
-      <a [routerLink]="['/receipt-edit']" class="btn btn-default btn-lg">
-          <span class="glyphicon glyphicon-plus" aria-hidden="true">+</span>
+      <a [routerLink]="['/receipt-edit']" class="btn btn-default btn-lg" *ngIf="edit">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true" >+</span>
       </a>
   </h1>
 
@@ -11,12 +11,13 @@
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">{{receipt.name}}</h5>
           <span>
-          <a class="fas fa-edit" href="/#/receipt-edit/{{receipt.id}}" data-toggle="tooltip" title="Rezept bearbeiten" style="font-size: 1.3em;"></a>
-          <a class="fas fa-hand-paper" href="/#/steps/{{receipt.id}}" data-toggle="tooltip" title="Arbeistschritte erfassen" style="font-size: 1.3em;"></a>
+          <a class="fas fa-edit" href="/#/receipt-edit/{{receipt.id}}" data-toggle="tooltip" title="Rezept bearbeiten" style="font-size: 1.3em;" *ngIf="isLoggedIn$"></a>
+          <a class="fas fa-hand-paper" href="/#/steps/{{receipt.id}}" data-toggle="tooltip" title="Arbeistschritte erfassen" style="font-size: 1.3em;" *ngIf="edit"></a>
+          <a class="fas fa-print" href="/#/steps/{{receipt.id}}" data-toggle="tooltip" title="Arbeistschritte erfassen" style="font-size: 1.3em;"></a>
           <!--a [routerLink]="">
             <i class="fas fa-trash-alt" data-toggle="tooltip" title="Rezept löschen" style="font-size: 1.3em;" (click)="deleteReceipt(receipt.id)"></i>
          </a-->
-          <a class="fas fa-trash-alt" href="#" data-toggle="modal" data-target="#myModal" style="font-size: 1.3em;" (click)="id=receipt.id"></a>
+          <a class="fas fa-trash-alt" href="#" data-toggle="modal" data-target="#myModal" style="font-size: 1.3em;" (click)="id=receipt.id" *ngIf="edit"></a>
           </span>
         </div>
         <p class="mb-1">{{receipt.description}}</p>
