@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app',
@@ -7,7 +8,16 @@ import { AuthService } from './auth.service';
 })
 export class AppComponent {
   
-  constructor(private auth: AuthService) { 
+  authorizedUser : boolean = false;
+
+  constructor(private auth: AuthService, private user: UserService) { 
     this.auth.isLoggedIn
+  }
+
+  ngOnInit() {
+    this.user.getUserData().subscribe( data => {
+      this.authorizedUser = data.isActive
+      console.log("Greetings from Main: "+this.authorizedUser)
+    })
   }
 }

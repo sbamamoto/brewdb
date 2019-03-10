@@ -12,7 +12,7 @@ class LoginController {
 static responseFormats = ['json']
 
     def index() {
-        println (" ##### User auth request received")
+        println (" ##### User auth request received index")
         if (session['user']) {
             render session['user'] as JSON
         }

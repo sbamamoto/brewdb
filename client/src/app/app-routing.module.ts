@@ -53,6 +53,8 @@ const routes: Routes = [
   {path: 'account', component: AccountComponent, data: {title: 'Account'}, canActivate: [AuthGuard]},
   {path: 'storage', component: StorageComponent, data: {title: 'Storage'}, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent, data: {title: 'Login'}},
+  {path: 'logout', component: LoginComponent, data: {title: 'Login'}},
+  
   
 ];
  

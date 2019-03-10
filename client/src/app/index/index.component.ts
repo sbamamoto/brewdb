@@ -17,6 +17,7 @@ export class IndexComponent implements OnInit {
   constructor(private navService: NavService, private router: Router) { }
 
   ngOnInit(): void {
+    console.log ("######## index on #######")
     this.serverUrl = environment.serverUrl;
     this.navService.getNavData().subscribe(applicationData => {
       this.controllers = applicationData.controllers.sort((a: any, b: any) => {

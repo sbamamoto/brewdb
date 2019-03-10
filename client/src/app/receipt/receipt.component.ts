@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../auth.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-receipt',
@@ -13,18 +13,23 @@ export class ReceiptComponent implements OnInit {
   receipts: any;
   edit: boolean;
 
-  constructor(private http: HttpClient, private router: Router, private auth:AuthService) { }
+  constructor(private http: HttpClient, private user:UserService) { }
 
   ngOnInit() {
+    this.user.getUserData().subscribe( data => {
+      this.edit = data.isActive
+    })
+
     this.http.get('/api/receipt').subscribe(data => {
       this.receipts = data;
     });
-    this.edit = this.auth.isLoggedIn
   }
 
   deleteReceipt(id) {
-    this.http.delete('/api/receipt/' + id).subscribe(data => {
-      this.receipts = data;
-    });
+
+      this.http.delete('/api/receipt/' + id).subscribe(data => {
+        this.receipts = data;
+      });
+
   }
 }

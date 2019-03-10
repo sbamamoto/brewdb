@@ -11,7 +11,7 @@
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">{{receipt.name}}</h5>
           <span>
-          <a class="fas fa-edit" href="/#/receipt-edit/{{receipt.id}}" data-toggle="tooltip" title="Rezept bearbeiten" style="font-size: 1.3em;" *ngIf="isLoggedIn$"></a>
+          <a class="fas fa-edit" href="/#/receipt-edit/{{receipt.id}}" data-toggle="tooltip" title="Rezept bearbeiten" style="font-size: 1.3em;" *ngIf="edit"></a>
           <a class="fas fa-hand-paper" href="/#/steps/{{receipt.id}}" data-toggle="tooltip" title="Arbeistschritte erfassen" style="font-size: 1.3em;" *ngIf="edit"></a>
           <a class="fas fa-print" href="/#/steps/{{receipt.id}}" data-toggle="tooltip" title="Arbeistschritte erfassen" style="font-size: 1.3em;"></a>
           <!--a [routerLink]="">

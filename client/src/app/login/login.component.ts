@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { connectableObservableDescriptor } from 'rxjs/observable/ConnectableObservable';
-
+import { Router } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +10,16 @@ import { connectableObservableDescriptor } from 'rxjs/observable/ConnectableObse
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private Auth: AuthService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private Auth: AuthService, private router: Router, private user: UserService) { }
+  active: boolean = false;
 
   ngOnInit() {
-    console.log("hallo, ich war hier ....")
+    this.user.getUserData().subscribe( data => {
+      this.active = data.isActive
+      this.Auth.logout();
+      this.Auth.emitState(false)
+      console.log("User logged out")
+    })
   }
 
   loginUser(event) {
@@ -25,12 +29,10 @@ export class LoginComponent implements OnInit {
     console.log(event)  
     this.Auth.getUserDetails(username, password).subscribe(data => {
       console.log (data, " from the web")
-      if (!data.isActive) {
-        window.alert ("Went  Wrong :(")
-      }
-      else {
+      if (data.isActive) {
         console.log("User logged in")
         this.Auth.setLoggedIn(true)
+        this.Auth.emitState(true)
         this.router.navigate(["receipts"])
       }
     })

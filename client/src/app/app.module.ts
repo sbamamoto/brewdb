@@ -30,6 +30,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
 import { UserService } from './user.service';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { UserService } from './user.service';
     BrewerDetailComponent,
     AccountComponent,
     StorageComponent,
-    LoginComponent
+    LoginComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
