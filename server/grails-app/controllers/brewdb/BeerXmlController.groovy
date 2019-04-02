@@ -161,6 +161,9 @@ class BeerXmlController {
             step.orderNumber = i++
             stepStartMinute += step.duration
             step.temperature = Double.parseDouble(it.STEP_TEMP.text()).intValue()
+            if (it.INFUSE_AMOUNT != null) {
+                
+            }
             receipt.addToSteps(step).save()   
         }
 
@@ -326,7 +329,7 @@ class BeerXmlController {
                         
                         case "Temperature": 
                             step.stepType = "ADD"
-                            receipt.processType = "INF"
+                            receipt.processType = "TEMP"
                             break
                         
                         case "Dekoktion": 

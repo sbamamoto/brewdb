@@ -22,6 +22,11 @@ class Receipt {
     
     static hasMany = [steps:Step]
     
+    static mapping = {
+        description type:"text"
+        
+    }
+
     static constraints = {
         yeastPosition nullable:true
         sourceUrl nullable:true
@@ -33,5 +38,6 @@ class Receipt {
         rinseWater nullable:true
         finalGravity nullable:true
         addedBy nullable:true
+        ibu nullable:true
     }
 }
