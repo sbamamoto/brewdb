@@ -17,7 +17,7 @@ class BrewerController {
         else {
             r = new Brewer();
         }
-        
+        r.password = ''; // dont send password to frontend
         render r as JSON
     }
 
@@ -30,7 +30,9 @@ class BrewerController {
         def r = request.JSON
         println ("update ---- "+r)
         def i = Brewer.findById(params['id'])
-
+        if (r[0].password) {
+            r[0].password = r[0].password.encodeAsSHA256()
+        }
         i.properties = r[0]
 
         i.save(flush:true)
@@ -41,7 +43,7 @@ class BrewerController {
 
         def r = request.JSON
         def i = new Brewer(r[0])
-        
+        i.password = i.password.encodeAsSHA256()
         println "****************"
         println r[0]
         println "****************"

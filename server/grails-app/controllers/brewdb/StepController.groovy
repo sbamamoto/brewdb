@@ -33,19 +33,36 @@ class StepController {
     
     def delete() {
         def i = Receipt.findById(params['id'])
-        i.delete(flush:true)
-        respond Receipt.findAll()
+        def s = Step.findById(params['stepId'])
+        println "ddddddddddd"
+        println s
+        println "ddddddddddd"
+        i.removeFromSteps(s)
+        if (!i.save(flush:true)) {
+                i.errors.allErrors.each {
+                    println it
+                }
+            }
+        respond Receipt.findById(params['id']).steps
     }    
     
     def update() {
         def r = request.JSON
         println ("update ---- "+r)
         def i = Step.findById(params['id'])
-
+        println "uuuuuuuuuuuuuuuu"
+        println r[0]
+        println "uuuuuuuuuuuuuuuu"
         i.properties = r[0]
+        println i.ingredients
+        println "uuuuuuuuuuuuuuu"
 
-        i.save(flush:true)
-        respond Step.findAll()
+        if (!i.save(flush:true)) {
+                i.errors.allErrors.each {
+                    println it
+                }
+            }
+        respond r.receiptId
     }
     
     
@@ -54,7 +71,8 @@ class StepController {
 
         
         def i = new Step(r[0])
-        
+        def receipt = Receipt.findById(r.receiptId);
+
         println "****************"
         println r[0]
         println "****************"
@@ -77,7 +95,7 @@ class StepController {
                 println it
             }
         } else {
-            def receipt = Receipt.findById(r.receiptId);
+            
             receipt.addToSteps(i);
             if (!receipt.save(flush:true)) {
                 receipt.errors.allErrors.each {
@@ -86,7 +104,6 @@ class StepController {
             }
         }
 
-
-        respond Step.findAll()
+        respond r.receiptId
     }
 }

@@ -25,6 +25,12 @@ import { BrewerComponent } from './brewer/brewer.component';
 import { BrewerEditComponent } from './brewer-edit/brewer-edit.component';
 import { BrewerDetailComponent } from './brewer-detail/brewer-detail.component';
 import { AccountComponent } from './account/account.component';
+import { StorageComponent } from './storage/storage.component';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
+import { UserService } from './user.service';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
@@ -47,7 +53,10 @@ import { AccountComponent } from './account/account.component';
     BrewerComponent,
     BrewerEditComponent,
     BrewerDetailComponent,
-    AccountComponent
+    AccountComponent,
+    StorageComponent,
+    LoginComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +65,7 @@ import { AccountComponent } from './account/account.component';
     AppRoutingModule,
     NgbModule.forRoot()
   ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, AuthService, AuthGuard, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

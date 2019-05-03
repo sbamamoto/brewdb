@@ -1,4 +1,3 @@
-<!doctype html>
 <html lang="en">
 
 <head>
@@ -28,99 +27,9 @@
 </head>
 
 <body>
-
-  <!-- example 2 - using auto margins -->
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#/receipts">Rezepte
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Profil
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Lagerbestand</a>
-            <a class="dropdown-item" href="#">Rezeptvorschlag</a>
-            <a class="dropdown-item" href="#/material">Meine Rezepte</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Account Einstellungen</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Braumanagement
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#/materials">Materialien</a>
-            <a class="dropdown-item" href="#/sources">Bezugsquellen</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Administration
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#/brewers">Benutzerverwaltung</a>
-            <a class="dropdown-item" href="#/sources">Systemeinstellungen</a>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="mx-auto order-0">
-      <a class="navbar-brand mx-auto" href="#">BrewDB</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <form action="http://localhost:8080/beerXml" id="fileform" name="fileform" class="form-inline my-2 my-lg-0"
-            method="POST" enctype='multipart/form-data'>
-            <form id="fileform" name="fileform" class="form-inline my-2 my-lg-0">
-              <div style="margin-right: 10px;">
-                <label class="file-upload btn btn-primary">
-                  Import <input type="file" id="beerxml" name="beerxml" hidden />
-                </label>
-              </div>
-
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-
-            </form>
-        </li>
-        <li class="nav-item">
-          <div class="form-inline my-2 my-lg-0">
-            <a class="fas fa-bars nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" style="font-size: 1.3em;margin-left: 10px;"
-              aria-haspopup="true" aria-expanded="false"></a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Lagerbestand</a>
-              <a class="dropdown-item" href="#">Rezeptvorschlag</a>
-              <a class="dropdown-item" href="#/material">Meine Rezepte</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#/account">Account Einstellungen</a>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
   <app>
     Loading...
   </app>
-  <script>
-    document.getElementById("beerxml").onchange = function () {
-      document.getElementById("fileform").submit();
-    };
-  </script>
 </body>
 
 </html>

@@ -17,37 +17,45 @@ import {BrewerComponent} from "./brewer/brewer.component";
 import {BrewerEditComponent} from "./brewer-edit/brewer-edit.component";
 import {BrewerDetailComponent} from "./brewer-detail/brewer-detail.component";
 import {AccountComponent} from "./account/account.component";
+import {StorageComponent} from "./storage/storage.component";
+import {LoginComponent} from "./login/login.component";
+import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [
   {path: '', redirectTo: '/receipts', pathMatch: 'full'},
   {path: 'receipts', component: ReceiptComponent, data: {title: 'Receipt List'}},
-  {path: 'sources', component: SourceComponent, data: {title: 'Sources List'}},
-  {path: 'source-create', component: SourceCreateComponent, data: {title: 'Add Source'}},  
-  {path: 'source-details/:id', component: SourceDetailComponent, data: {title: 'Source Details'}},  
-  {path: 'source-edit/:id', component: SourceEditComponent, data: {title: 'Source Edit'}},
-  {path: 'ingredients', component: IngredientComponent, data: {title: 'Ingredients List'}},
-  {path: 'ingredient/:id', component: IngredientComponent, data: {title: 'Ingredients Delete'}},
-  {path: 'ingredient-edit/:id', component: IngredientEditComponent, data: {title: 'Ingredients Edit'}},
-  {path: 'ingredient-edit', component: IngredientEditComponent, data: {title: 'Ingredients Add'}},
-  {path: 'materials', component: MaterialComponent, data: {title: 'Materials List'}},
-  {path: 'material/:id', component: MaterialComponent, data: {title: 'Materials Delete'}},
-  {path: 'material-edit/:id', component: MaterialEditComponent, data: {title: 'Materials Edit'}},
-  {path: 'material-edit', component: MaterialEditComponent, data: {title: 'Materials Add'}},
-  {path: 'receipt/:id', component: ReceiptComponent, data: {title: 'Receipt Delete'}},
-  {path: 'receipt-edit/:id', component: ReceiptEditComponent, data: {title: 'Receipt Edit'}},
-  {path: 'receipt-edit', component: ReceiptEditComponent, data: {title: 'Receipt Add'}},
-  {path: 'steps/:id', component: StepComponent, data: {title: 'Work on Steps'}},
-  {path: 'step-up/:id/:up', component: StepComponent, data: {title: 'One Step Up'}},
-  {path: 'step/:id', component: StepComponent, data: {title: 'Step Delete'}},
-  {path: 'step-edit/:id/:receiptId', component: StepEditComponent, data: {title: 'Step Edit'}},
-  {path: 'step-edit', component: StepEditComponent, data: {title: 'Step Add'}},
-  {path: 'brewers', component: BrewerComponent, data: {title: 'Brewers List'}},
-  {path: 'brewer/:id', component: BrewerComponent, data: {title: 'Brewer Delete'}},
-  {path: 'brewer-edit/:id', component: BrewerEditComponent, data: {title: 'Brewer Edit'}},
-  {path: 'brewer-edit', component: BrewerEditComponent, data: {title: 'Brewer Add'}},
-  {path: 'brewer-details/:id', component: BrewerDetailComponent, data: {title: 'Brewer Delete'}},
-  {path: 'account', component: AccountComponent, data: {title: 'Account'}},
+  {path: 'sources', component: SourceComponent, data: {title: 'Sources List'}, canActivate: [AuthGuard]},
+  {path: 'source-create', component: SourceCreateComponent, data: {title: 'Add Source'}, canActivate: [AuthGuard]},  
+  {path: 'source-details/:id', component: SourceDetailComponent, data: {title: 'Source Details'}, canActivate: [AuthGuard]},  
+  {path: 'source-edit/:id', component: SourceEditComponent, data: {title: 'Source Edit'}, canActivate: [AuthGuard]},
+  {path: 'ingredients', component: IngredientComponent, data: {title: 'Ingredients List'}, canActivate: [AuthGuard]},
+  {path: 'ingredient/:id', component: IngredientComponent, data: {title: 'Ingredients Delete'}, canActivate: [AuthGuard]},
+  {path: 'ingredient-edit/:id', component: IngredientEditComponent, data: {title: 'Ingredients Edit'}, canActivate: [AuthGuard]},
+  {path: 'ingredient-edit', component: IngredientEditComponent, data: {title: 'Ingredients Add'}, canActivate: [AuthGuard]},
+  {path: 'materials', component: MaterialComponent, data: {title: 'Materials List'}, canActivate: [AuthGuard]},
+  {path: 'material/:id', component: MaterialComponent, data: {title: 'Materials Delete'}, canActivate: [AuthGuard]},
+  {path: 'material-edit/:id', component: MaterialEditComponent, data: {title: 'Materials Edit'}, canActivate: [AuthGuard]},
+  {path: 'material-edit', component: MaterialEditComponent, data: {title: 'Materials Add'}, canActivate: [AuthGuard]},
+  {path: 'receipt/:id', component: ReceiptComponent, data: {title: 'Receipt Delete'}, canActivate: [AuthGuard]},
+  {path: 'receipt-edit/:id', component: ReceiptEditComponent, data: {title: 'Receipt Edit'}, canActivate: [AuthGuard]},
+  {path: 'receipt-edit', component: ReceiptEditComponent, data: {title: 'Receipt Add'}, canActivate: [AuthGuard]},
+  {path: 'steps/:id', component: StepComponent, data: {title: 'Work on Steps'}, canActivate: [AuthGuard]},
+  {path: 'step-up/:id/:up', component: StepComponent, data: {title: 'One Step Up'}, canActivate: [AuthGuard]},
+  {path: 'step/:id/:stepId', component: StepComponent, data: {title: 'Step Delete'}, canActivate: [AuthGuard]},
+  {path: 'step-edit/:id/:receiptId', component: StepEditComponent, data: {title: 'Step Edit'}, canActivate: [AuthGuard]},
+  {path: 'step-edit', component: StepEditComponent, data: {title: 'Step Add'}, canActivate: [AuthGuard]},
+  {path: 'brewers', component: BrewerComponent, data: {title: 'Brewers List'}, canActivate: [AuthGuard]},
+  {path: 'brewer/:id', component: BrewerComponent, data: {title: 'Brewer Delete'}, canActivate: [AuthGuard]},
+  {path: 'brewer-edit/:id', component: BrewerEditComponent, data: {title: 'Brewer Edit'}, canActivate: [AuthGuard]},
+  {path: 'brewer-edit', component: BrewerEditComponent, data: {title: 'Brewer Add'}, canActivate: [AuthGuard]},
+  {path: 'brewer-details/:id', component: BrewerDetailComponent, data: {title: 'Brewer Delete'}, canActivate: [AuthGuard]}, 
+  {path: 'account', component: AccountComponent, data: {title: 'Account'}, canActivate: [AuthGuard]},
+  {path: 'storage', component: StorageComponent, data: {title: 'Storage'}, canActivate: [AuthGuard]},
+  {path: 'login', component: LoginComponent, data: {title: 'Login'}},
+  {path: 'logout', component: LoginComponent, data: {title: 'Login'}},
+  
+  
 ];
  
 @NgModule({

@@ -11,4 +11,8 @@ class Ingredient {
     static mapping = {
         material lazy: false
     }
+
+    static constraints = {
+        temperature nullable:true
+    }
 }

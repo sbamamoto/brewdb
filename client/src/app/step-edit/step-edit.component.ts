@@ -88,7 +88,7 @@ export class StepEditComponent implements OnInit {
       });
     }
 
-
+    console.log ( "#### proceeding to receipt id:" + this.receiptId);
     this.router.navigate(['/steps/'+this.receiptId]);
   }
 }

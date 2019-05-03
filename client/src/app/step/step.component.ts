@@ -22,8 +22,9 @@ export class StepComponent implements OnInit {
     }
    
     this.http.get('http://localhost:8080/stepList/'+this.receiptId).subscribe(data => {
-      console.log(' ##### ' + data);      
+      console.log(' ##ngoninit## ' + data);      
       this.stepInfo = data;
+      console.log('*** '+this.stepInfo.steps.length);
       console.log(this.stepInfo);
       console.log(this.stepInfo.steps);      
     });
@@ -40,6 +41,15 @@ export class StepComponent implements OnInit {
 
   down (stepId) {
     this.http.get('http://localhost:8080/stepList/'+this.receiptId+'?down='+stepId).subscribe(data => {
+      console.log(' ##### ' + data);      
+      this.stepInfo = data;
+      console.log(this.stepInfo);
+      console.log(this.stepInfo.steps);      
+    });
+  }
+
+  deleteStep (stepId) {
+    this.http.delete('http://localhost:8080/step/'+this.receiptId+"?stepId="+stepId).subscribe(data => {
       console.log(' ##### ' + data);      
       this.stepInfo = data;
       console.log(this.stepInfo);
