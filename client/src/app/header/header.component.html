@@ -39,12 +39,12 @@
   <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item" *ngIf="active">
-        <!--form action="http://localhost:8080/beerXml" id="fileform" name="fileform" class="form-inline my-2 my-lg-0"
-          method="POST" enctype='multipart/form-data'-->
-          <form id="fileform" name="fileform" class="form-inline my-2 my-lg-0">
+        <form action="http://localhost:8080/beerXml" id="fileform" name="fileform" class="form-inline my-2 my-lg-0"
+          method="POST" enctype='multipart/form-data'>
+          <!--form id="fileform" name="fileform" class="form-inline my-2 my-lg-0"-->
             <div style="margin-right: 10px;">
               <label class="file-upload btn btn-primary">
-                Import <input type="file" id="beerxml" name="beerxml" hidden />
+                Import <input type="file" id="beerxml" name="beerxml" hidden onchange='document.getElementById("fileform").submit();'/>
               </label>
             </div>
 
@@ -70,9 +70,3 @@
     </ul>
   </div>
 </nav>
-
-<script>
-  document.getElementById("beerxml").onchange = function () {
-    document.getElementById("fileform").submit();
-  };
-</script>
