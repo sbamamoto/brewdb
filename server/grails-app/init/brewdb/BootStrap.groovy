@@ -38,6 +38,15 @@ class BootStrap {
                 value: "0"
             ).save()
         }
+        def brewer = Brewer.findByUserId("admin")
+        if (brewer == null) {
+            new Brewer(
+                firstname: "admin",
+                lastname: "admin",
+                userId: "admin",
+                password: "admin".encodeAsSHA256(),                
+            ).save()
+        }
     }
     def destroy = {
     }
