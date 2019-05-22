@@ -200,6 +200,7 @@ class ImportBeerXMLService {
 
     def importXMLFile(xmlFile) {
 
+        def profile = Profile.findByProfileName("REFERENCEPROFILE")
         def recipes = new XmlSlurper().parse(xmlFile)
 
         recipes.RECIPE.FERMENTABLES.FERMENTABLE.findAll().each {
