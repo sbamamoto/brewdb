@@ -10,6 +10,8 @@ import { UserService } from '../user.service';
 })
 export class StorageComponent implements OnInit {
 
+  materials:any;
+
   constructor(private http: HttpClient,
     private router: Router,
     private route: ActivatedRoute,
@@ -22,6 +24,7 @@ export class StorageComponent implements OnInit {
     // only can access storage if logged in
       this.http.get('/api/storage').subscribe(data => {
           console.log(' ##ngoninit## ' + data);
+          this.materials = data;
         });
   }
 }

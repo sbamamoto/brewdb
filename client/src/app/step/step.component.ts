@@ -21,7 +21,7 @@ export class StepComponent implements OnInit {
       this.receiptId = '-1';
     }
    
-    this.http.get('http://localhost:8080/stepList/'+this.receiptId).subscribe(data => {
+    this.http.get('/api/stepList/'+this.receiptId).subscribe(data => {
       console.log(' ##ngoninit## ' + data);      
       this.stepInfo = data;
       console.log('*** '+this.stepInfo.steps.length);
@@ -31,7 +31,7 @@ export class StepComponent implements OnInit {
   }
 
   up (stepId) {
-    this.http.get('http://localhost:8080/stepList/'+this.receiptId+'?up='+stepId).subscribe(data => {
+    this.http.get('/api/stepList/'+this.receiptId+'?up='+stepId).subscribe(data => {
       console.log(' ##### ' + data);      
       this.stepInfo = data;
       console.log(this.stepInfo);
@@ -40,7 +40,7 @@ export class StepComponent implements OnInit {
   }
 
   down (stepId) {
-    this.http.get('http://localhost:8080/stepList/'+this.receiptId+'?down='+stepId).subscribe(data => {
+    this.http.get('/api/stepList/'+this.receiptId+'?down='+stepId).subscribe(data => {
       console.log(' ##### ' + data);      
       this.stepInfo = data;
       console.log(this.stepInfo);
@@ -49,7 +49,7 @@ export class StepComponent implements OnInit {
   }
 
   deleteStep (stepId) {
-    this.http.delete('http://localhost:8080/step/'+this.receiptId+"?stepId="+stepId).subscribe(data => {
+    this.http.delete('/api/step/'+this.receiptId+"?stepId="+stepId).subscribe(data => {
       console.log(' ##### ' + data);      
       this.stepInfo = data;
       console.log(this.stepInfo);

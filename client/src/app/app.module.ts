@@ -31,6 +31,7 @@ import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
 import { UserService } from './user.service';
 import { HeaderComponent } from './header/header.component';
+import { StorageEditComponent } from './storage-edit/storage-edit.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { HeaderComponent } from './header/header.component';
     AccountComponent,
     StorageComponent,
     LoginComponent,
-    HeaderComponent
+    HeaderComponent,
+    StorageEditComponent
   ],
   imports: [
     BrowserModule,

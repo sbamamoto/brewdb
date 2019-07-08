@@ -24,7 +24,7 @@ export class MaterialEditComponent implements OnInit {
             id = '-1';
         }
 
-        this.http.get('http://localhost:8080/material/' + id).subscribe(data => {
+        this.http.get('/api/material/' + id).subscribe(data => {
             this.material = data['material'];
             this.types = data['types'];
         }, (err) => {
@@ -36,7 +36,7 @@ export class MaterialEditComponent implements OnInit {
     saveMaterial(id) {
         if (id == null) {
             console.log("creating material." + this.type);
-            this.http.post('http://localhost:8080/material', [this.material]).subscribe(res => {
+            this.http.post('/api/material', [this.material]).subscribe(res => {
                 console.log("material sent");
                 let id = res['id'];
                 this.router.navigate(['/materials/']);
@@ -46,7 +46,7 @@ export class MaterialEditComponent implements OnInit {
             );
         }
         else {
-            this.http.put('http://localhost:8080/material/' + id, [this.material]).subscribe(res => {
+            this.http.put('/api/material/' + id, [this.material]).subscribe(res => {
                 let id = res['id'];
                 this.router.navigate(['/materials/']);
             }, (err) => {

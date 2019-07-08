@@ -4,7 +4,7 @@
         <div class="col-md-6">
             <form (ngSubmit)="saveMaterial(material.id)" #materialForm="ngForm">
                 <div class="form-group">
-                    <select class="combobox form-control" [(ngModel)]="material.type" name="mat.type">
+                    <select class="combobox form-control" [(ngModel)]="materials" name="mat.type">
                         <option>Please select ...</option>
                         <option *ngFor="let type of types" value="{{type}}">{{type}}</option>
                     </select>

@@ -14,14 +14,14 @@ export class MaterialComponent implements OnInit {
     constructor(private http:HttpClient, private router:Router) { }
 
     ngOnInit() {
-        this.http.get('http://localhost:8080/material').subscribe( data=> {
+        this.http.get('/api/material').subscribe( data=> {
             this.materials = data;
             console.log("Hallo: [" +data[0].notes+"]") 
         });
     }
     
     deleteMaterial(id){
-        this.http.delete('http://localhost:8080/material/'+id).subscribe( data=> {
+        this.http.delete('/api/material/'+id).subscribe( data=> {
             this.materials = data;
         });
     }
