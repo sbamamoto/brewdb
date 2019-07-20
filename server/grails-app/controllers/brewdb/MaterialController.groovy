@@ -16,8 +16,18 @@ class MaterialController {
         return [materialList:materials]
     }
     
+    def materialsByType() {
+        def m = Material.findAllByType(params['id'],[sort: "name"])
+        def responseData = [
+            'materials':m
+        ]
+        render responseData as JSON
+    }
+
     def show() {
         def m
+        def materials
+
         if (params['id']!='-1') { 
             m = Material.findById(params['id'])
         }
@@ -25,8 +35,13 @@ class MaterialController {
             m = new Material();
         }
         
+        if (params['type']) {
+            materials = Material.findAllByType(params['type'],[sort: "name"])
+        }
+
         def responseData = [
             'material': m,
+            'materials': materials,
             'types': ["Malz","Hopfen","Hefe","Wasser","Andere","Aurüstung"]
         ]
         

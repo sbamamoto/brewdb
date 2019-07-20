@@ -1,36 +1,34 @@
 <div class="container">
-    <h1>Add New Material</h1>
-    <div class="row"> 
+    <h1>Add To Storage</h1>
+    <div class="row">
         <div class="col-md-6">
             <form (ngSubmit)="saveMaterial(material.id)" #materialForm="ngForm">
                 <div class="form-group">
-                    <select class="combobox form-control" [(ngModel)]="materials" name="mat.type">
-                        <option>Please select ...</option>
-                        <option *ngFor="let type of types" value="{{type}}">{{type}}</option>
+                    <select (change)="onChange($event.target.value)" class="combobox form-control">
+                        <option *ngFor="let eachVal of types">
+                            {{eachVal}}
+                        </option>
                     </select>
                 </div>
+
                 <div class="form-group">
-                    <label for="description">Name</label>
-                    <input type="text" class="form-control" [(ngModel)]="material.name" name="mat.name" required>
+                    <select class="combobox form-control">
+                        <option *ngFor="let eachVal of materials">
+                            {{eachVal.name}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="unit">Unit</label>
+                    <textarea class="form-control" name="stor.unit"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea class="form-control" [(ngModel)]="material.description" name="mat.description"></textarea>
+                    <label for="quantity">Quantity</label>
+                    <input type="text" class="form-control" [(ngModel)]="types" name="mat.value" />
                 </div>
                 <div class="form-group">
-                    <label for="description">Source URL</label>
-                    <input type="text" class="form-control" [(ngModel)]="material.sourceUrl" name="mat.sourceUrl"/>
-                </div>
-                <div class="form-group">
-                    <label for="notes">Notes</label>
-                    <textarea class="form-control" [(ngModel)]="material.notes" name="mat.notes"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="notes">Value</label>
-                    <input type="text" class="form-control" [(ngModel)]="material.value" name="mat.value"/>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success" [disabled]="!materialForm.form.valid" >
+                    <button type="submit" class="btn btn-success" [disabled]="!materialForm.form.valid">
                         Save
                     </button>
                 </div>
@@ -38,3 +36,8 @@
         </div>
     </div>
 </div>
+<script>
+onChange(deviceValue) {
+    console.log(deviceValue);
+}
+</script>

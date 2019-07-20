@@ -18,6 +18,7 @@ import {BrewerEditComponent} from "./brewer-edit/brewer-edit.component";
 import {BrewerDetailComponent} from "./brewer-detail/brewer-detail.component";
 import {AccountComponent} from "./account/account.component";
 import {StorageComponent} from "./storage/storage.component";
+import {StorageEditComponent} from "./storage-edit/storage-edit.component";
 import {LoginComponent} from "./login/login.component";
 import { AuthGuard } from './auth.guard';
 
@@ -52,6 +53,7 @@ const routes: Routes = [
   {path: 'brewer-details/:id', component: BrewerDetailComponent, data: {title: 'Brewer Delete'}, canActivate: [AuthGuard]}, 
   {path: 'account', component: AccountComponent, data: {title: 'Account'}, canActivate: [AuthGuard]},
   {path: 'storage', component: StorageComponent, data: {title: 'Storage'}, canActivate: [AuthGuard]},
+  {path: 'storage-edit/:id', component: StorageEditComponent, data: {title: 'Storage Add'}, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent, data: {title: 'Login'}},
   {path: 'logout', component: LoginComponent, data: {title: 'Login'}},
   
