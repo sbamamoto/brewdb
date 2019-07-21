@@ -20,6 +20,7 @@ export class StorageEditComponent implements OnInit {
   storage: any;
   response: any;
   matNames: any;
+  sources: any;
 
   ngOnInit() {
     let id;
@@ -35,9 +36,11 @@ export class StorageEditComponent implements OnInit {
       this.response = data;
       this.types = this.response.types;
       this.allMaterials = this.response.materials;
+      this.sources = this.response.sources;
       this.materials = [];
       this.storage = this.response.storage;
       this.storage.unit = 'GRAMM';
+      this.storage.material = '2';
       console.log(this.storage);
     }, (err) => {
       console.log(err);
@@ -46,7 +49,7 @@ export class StorageEditComponent implements OnInit {
   }
 
   onChange(deviceValue) {
-    this.materials=[];
+    this.materials = [];
     console.log(this.allMaterials);
     this.allMaterials.forEach(element => {
       if (element.type === deviceValue) {
@@ -55,4 +58,26 @@ export class StorageEditComponent implements OnInit {
     });
   }
 
+  saveStorage(id) {
+    console.log(this.storage);
+    console.log(this.selectedMaterial);
+    if (id == null) {
+      this.http.post('/api/storage', [this.storage]).subscribe(res => {
+        console.log("storage sent");
+        let id = res['id'];
+        this.router.navigate(['/storage/']);
+      }, (err) => {
+        console.log(err);
+      }
+      );
+    }
+    else {
+      this.http.put('/api/storage/' + id, [this.storage]).subscribe(res => {
+        let id = res['id'];
+        this.router.navigate(['/storage/']);
+      }, (err) => {
+        console.log(err);
+      });
+    }
+  }
 }
