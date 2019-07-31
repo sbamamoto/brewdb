@@ -23,12 +23,11 @@
       </thead>
       <tbody>
           <tr *ngFor="let mat of materials">
-              <td>{{ mat.type }}</td>
-              <td>{{ mat.name }}</td>
+              <td>{{ mat.material.name }}</td>
+              <td>{{ mat.quantity }}</td>
 
-              <td>{{ mat.description }}</td>
-              <td>{{ mat.sourceUrl }}</td>
-
+              <td>{{ mat.unit }}</td>
+              
               <td>
                   <a href="/#/material-edit/{{mat.id}}">EDIT</a>
               </td>

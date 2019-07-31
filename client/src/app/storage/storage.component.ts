@@ -24,8 +24,9 @@ export class StorageComponent implements OnInit {
   ngOnInit() {
     // only can access storage if logged in
       this.http.get('/api/storage').subscribe(data => {
-          console.log(' ##ngoninit## ' + data[0]);
+          console.log(' ##ngoninit## ' + data);
           this.response = data;
+          console.log (this.response.materials)
           this.materials = this.response.materials;
         });
   }

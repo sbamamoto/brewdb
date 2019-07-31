@@ -60,7 +60,6 @@ export class StorageEditComponent implements OnInit {
 
   saveStorage(id) {
     console.log(this.storage);
-    console.log(this.selectedMaterial);
     if (id == null) {
       this.http.post('/api/storage', [this.storage]).subscribe(res => {
         console.log("storage sent");

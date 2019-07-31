@@ -17,7 +17,9 @@ class StorageController {
             'materials': materials
            ]
         println ("INDEEEEX");
-        render responseData as JSON
+        JSON.use('deep'){
+            render responseData as JSON
+        }
     }
 
     def show() {         
@@ -31,7 +33,9 @@ class StorageController {
             'sources': sources,
             'storage': storageItem
            ]
-        render responseData as JSON
+        JSON.use('deep'){
+            render responseData as JSON
+        }
     }
 
     def delete() {
@@ -59,6 +63,7 @@ class StorageController {
         
         def i = new Storage(r[0])
         i.owner = session['user']
+        i.material = Material.findById(r['material'])
         println "****************"
         println r[0]
         println "****************"

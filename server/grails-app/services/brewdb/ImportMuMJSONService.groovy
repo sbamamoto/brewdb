@@ -68,8 +68,8 @@ class ImportMuMJSONService {
             println "Using material: "+material
             if (material) {
                 ingredient.material = material
-                ingredient.units = "GRAMM"
-                ingredient.measure = content["Malz"+counter+"Menge"]
+                ingredient.units = "GRAM"
+                ingredient.measure = content["Malz"+counter+"_Menge"]
                 ingredient.temperature = 20
                 step.addToIngredients(ingredient).save(flush:true)  
             }
@@ -79,7 +79,11 @@ class ImportMuMJSONService {
           
             counter+=1
         }
-        recipe.addToSteps(step).save(flush:true)
+        if (!recipe.addToSteps(step).save(flush:true)){
+            recipe.errors.allErrors.each {
+                println it
+            }
+        }
 
         /* Add all fermentables to the first Step
         recipe.RECIPE.FERMENTABLES.FERMENTABLE.findAll().each {
