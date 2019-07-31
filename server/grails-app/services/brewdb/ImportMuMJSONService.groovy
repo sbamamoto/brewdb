@@ -20,15 +20,37 @@ class ImportMuMJSONService {
         double totalInfusedWater = 0
         
         // Heat Water
-        def material = Material.findByType("Wasser")
-        def ingredient = new Ingredient()
-        def step = new Step()
+        Material material = Material.findByType("Wasser")
+        Ingredient ingredient = new Ingredient()
+        Step step = new Step()
         def startStepMinute = startTime
+        Profile profile = Profile.findByProfileName("REFERENCEPROFILE")
+        Double startMashTemperature = (Double)content["Infusion_Einmaischtemperatur"]
         
-        
+        println "";
+        println "### Start Mash Temp: "+startMashTemperature
+
         step.stepType = "HEAT"
         step.timeUnit = "MIN"
         step.orderNumber = i++
+        step.name = "Wasser Erhitzen"
+        step.startTime = stepStartMinute
+        
+        step.timeUnit = "MIN"   
+
+        ingredient.material = material
+        ingredient.units = "LITER"
+        ingredient.measure = content["Infusion_Hauptguss"]
+        ingredient.temperature = 20
+        step.addToIngredients(ingredient).save(flush:true)  
+
+        step.duration = (profile.mashTun.heatRate * (startMashTemperature-(Double)ingredient.temperature)).intValue()
+
+        if (!recipe.addToSteps(step).save(flush:true)){
+            recipe.errors.allErrors.each {
+                println it
+            }
+        }
 
         // Add Malt Add first mashing step
         step = new Step()
@@ -84,6 +106,25 @@ class ImportMuMJSONService {
                 println it
             }
         }
+
+        counter =1
+        while (content["Infusion_Rasttemperatur"+counter]!=null) {
+            // Add Malt Add first mashing step
+            step = new Step()
+            step.stepType = "HEAT"
+            step.name = "Erwärmen"
+            step.startTime = stepStartMinute
+            step.duration = 0
+            step.temperature = Integer.parseInt(content["Infusion_Rasttemperatur"+counter])
+            step.timeUnit = "MIN"
+            step.orderNumber = i++
+            if (!recipe.addToSteps(step).save(flush:true)){
+                recipe.errors.allErrors.each {
+                    println it
+                }
+            }
+        }
+
 
         /* Add all fermentables to the first Step
         recipe.RECIPE.FERMENTABLES.FERMENTABLE.findAll().each {
