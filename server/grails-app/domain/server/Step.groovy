@@ -10,7 +10,7 @@ class Step {
     Integer temperature
     String description
     Integer orderNumber
-    
+    Boolean parallel = true
     
     static hasMany = [
         ingredients:Ingredient, 
