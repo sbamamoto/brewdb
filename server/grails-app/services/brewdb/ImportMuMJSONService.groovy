@@ -191,12 +191,12 @@ class ImportMuMJSONService {
         step.timeUnit = "MIN"
         step.orderNumber = i++
 
-        int counter = 1
+        counter = 1
         Hop hop
 
         while (content["Hopfen_VWH_"+counter+"_Sorte"] != null) {
             hop = Hop.findByName(content["Hopfen_VWH_"+counter+"_Sorte"])
-            println "#### "+content["Hopfen_VWH_"+counter+"_Sorte"]]
+            println "#### "+content["Hopfen_VWH_"+counter+"_Sorte"]
             println "---- ["+hop+"]"
             if (!hop) {
                 hop = new Hop()

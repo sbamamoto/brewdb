@@ -2,6 +2,8 @@ package server
 
 class Malt {
     String name
+    String notes
+    String description
     Double water                                //in percent
     Double pH 
     Double color
@@ -21,9 +23,13 @@ class Malt {
     Double viscosity
     Double betaGlucan
 
-    static hasMany = [sources:Source] 
- 
+    static belongsTo = Source
+    static hasMany = [sources:Source]
+
+
     static constraints = {
+        notes nullable:true
+        description nullable:true
         water nullable:true
         pH nullable:true
         color nullable:true

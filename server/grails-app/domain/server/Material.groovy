@@ -1,16 +1,11 @@
 package server
 
 class Material {
- 
-    String type
-    String name
-    String description
-    String notes
-    String value      //depends on type malt -> EBC, Hop -> alpha, ...
+
+    String articleNo
 
     static constraints = {
-        description maxSize:2048, nullable:true   
-        notes maxSize:2048, nullable:true
+        articleNo nullable:true
     }
     
     String toString() {

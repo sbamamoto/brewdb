@@ -30,12 +30,12 @@ class BootStrap {
                 hopKettle: hk
             ).save()
         }
-        def material = Material.findByType("Wasser")
-        if (material==null) {
-            new Material (
-                type: "Wasser",
+        def other = Other.findByName("Wasser")
+        if (other==null) {
+            new Other (
                 name: "Wasser",
-                value: "0"
+                notes: "Wasser",
+                description: "Wasser"
             ).save()
         }
         def brewer = Brewer.findByUserId("admin")

@@ -9,6 +9,12 @@ class Source {
     String url
     String rating
     
+    static hasMany = [
+        malts:Malt,
+        hops:Hop,
+        yeasts:Yeast
+    ]
+
     static constraints = {
     }
     
