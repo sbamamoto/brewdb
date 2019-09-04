@@ -5,10 +5,12 @@ import groovy.json.JsonSlurper
 import server.Receipt
 import server.Receipt
 import server.Step
-import server.Material
+import server.Other
 import server.Ingredient
 import server.Profile
 import server.Hop
+import server.MaltIngredient
+import server.Malt
 
 @Transactional
 class ImportMuMJSONService {
@@ -20,7 +22,7 @@ class ImportMuMJSONService {
         double totalInfusedWater = 0
         
         // Heat Water
-        Material material = Material.findByType("Wasser")
+        Other material = Other.findByType("Wasser")
         Ingredient ingredient = new Ingredient()
         Step step = new Step()
         def startStepMinute = startTime
@@ -64,21 +66,17 @@ class ImportMuMJSONService {
         int counter = 1
 
         while (content["Malz"+counter] != null) {
-            material = Material.findByName(content["Malz"+counter])
+            Malt malt = Malt.findByName(content["Malz"+counter])
             println "#### "+content["Malz"+counter]
-            println "---- ["+material+"]"
-            if (!material) {
-                material = new Material()
-                material.type = "Malz"
-                material.value = 0
-                material.notes = ""
-                material.name = content["Malz"+counter]
-                if (!material.save(flush:true)) {
-                    material.errors.allErrors.each {
+            println "---- ["+malt+"]"
+            if (!malt) {
+                malt = new Malt()
+                malt.name = content["Malz"+counter]
+                if (!malt.save(flush:true)) {
+                    malt.errors.allErrors.each {
                         println it
                     }
                 }
-                
             }
             counter+=1
         } 
@@ -86,15 +84,15 @@ class ImportMuMJSONService {
         
         while (content["Malz"+counter] != null) {
             println content["Malz"+counter]
-            ingredient = new Ingredient()
-            material = Material.findByName(content["Malz"+counter])
-            println "Using material: "+material
-            if (material) {
-                ingredient.material = material
-                ingredient.units = "GRAM"
-                ingredient.measure = content["Malz"+counter+"_Menge"]
-                ingredient.temperature = 20
-                step.addToIngredients(ingredient).save(flush:true)  
+            MaltIngredient maltIngredient = new MaltIngredient()
+            maltIngredient = Malt.findByName(content["Malz"+counter])
+            println "Using material: "+malt
+            if (malt) {
+                maltIngredient.material = material
+                maltIngredient.units = "GRAM"
+                maltIngredient.measure = content["Malz"+counter+"_Menge"]
+                maltIngredient.temperature = 20
+                step.addToIngredients(maltIngredient).save(flush:true)  
             }
             else {
                 println "ERROR:  Material ["+it.NAME+"] not found"
