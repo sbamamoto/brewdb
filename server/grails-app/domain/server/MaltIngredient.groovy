@@ -1,8 +1,5 @@
 package server
 
-class MaltIngredient {
-    String units
-    String measure
-    Integer temperature
+class MaltIngredient extends Ingredient{
     Malt malt
 }
