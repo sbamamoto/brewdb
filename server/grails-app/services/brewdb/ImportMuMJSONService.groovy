@@ -22,7 +22,7 @@ class ImportMuMJSONService {
         double totalInfusedWater = 0
         
         // Heat Water
-        Other material = Other.findByType("Wasser")
+        Other material = Other.findByName("Wasser")
         Ingredient ingredient = new Ingredient()
         Step step = new Step()
         def startStepMinute = startTime
