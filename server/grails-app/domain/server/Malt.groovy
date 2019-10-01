@@ -38,7 +38,7 @@ class Malt {
         extract nullable:true
         extractDiff nullable:true
         saccharificationTime1 nullable:true
-        saccharificationTime1 nullable:true
+        saccharificationTime2 nullable:true
         endFermentation nullable:true
         vZ45 nullable:true
         nitrogen nullable:true

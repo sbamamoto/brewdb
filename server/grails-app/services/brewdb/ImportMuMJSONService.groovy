@@ -10,6 +10,8 @@ import server.Ingredient
 import server.Profile
 import server.Hop
 import server.MaltIngredient
+import server.OtherIngredient
+import server.HopIngredient
 import server.Malt
 
 @Transactional
@@ -23,7 +25,7 @@ class ImportMuMJSONService {
         
         // Heat Water
         Other material = Other.findByName("Wasser")
-        Ingredient ingredient = new Ingredient()
+        OtherIngredient ingredient = new OtherIngredient()
         Step step = new Step()
         def startStepMinute = startTime
         Profile profile = Profile.findByProfileName("REFERENCEPROFILE")
@@ -40,7 +42,7 @@ class ImportMuMJSONService {
         
         step.timeUnit = "MIN"   
 
-        ingredient.material = material
+        ingredient.other = material
         ingredient.units = "LITER"
         ingredient.measure = content["Infusion_Hauptguss"]
         ingredient.temperature = 20
@@ -77,6 +79,9 @@ class ImportMuMJSONService {
                         println it
                     }
                 }
+                else {
+                    println (" ++++++ Saved Malt: "+malt.name)
+                }
             }
             counter+=1
         } 
@@ -85,17 +90,17 @@ class ImportMuMJSONService {
         while (content["Malz"+counter] != null) {
             println content["Malz"+counter]
             MaltIngredient maltIngredient = new MaltIngredient()
-            maltIngredient = Malt.findByName(content["Malz"+counter])
+            Malt malt = Malt.findByName(content["Malz"+counter])
             println "Using material: "+malt
             if (malt) {
-                maltIngredient.material = material
+                maltIngredient.malt = malt
                 maltIngredient.units = "GRAM"
                 maltIngredient.measure = content["Malz"+counter+"_Menge"]
                 maltIngredient.temperature = 20
                 step.addToIngredients(maltIngredient).save(flush:true)  
             }
             else {
-                println "ERROR:  Material ["+it.NAME+"] not found"
+                println "ERROR:  Material ["+content["Malz"+counter]+"] not found"
             }
           
             counter+=1
@@ -150,7 +155,7 @@ class ImportMuMJSONService {
         step.parallel = true
         step.timeUnit = "MIN"   
 
-        ingredient.material = material
+        ingredient.other = material
         ingredient.units = "LITER"
         ingredient.measure = content["Nachguss"]
         ingredient.temperature = 20
@@ -214,14 +219,14 @@ class ImportMuMJSONService {
         
         while (content["Hopfen_VWH_"+counter+"_Sorte"] != null) {
             println content["Hopfen_VWH_"+counter+"_Sorte"]
-            ingredient = new Ingredient()
-            material = Material.findByName(content["Hopfen_VWH_"+counter+"_Sorte"])
-            println "Using material: "+material
+            HopIngredient hopIngredient = new HopIngredient()
+            hop = Hop.findByName(content["Hopfen_VWH_"+counter+"_Sorte"])
+            println "Using material: "+hop
             if (material) {
-                ingredient.material = material
-                ingredient.units = "GRAM"
-                ingredient.measure = content["Hopfen_VWH_"+counter+"_Menge"]
-                ingredient.temperature = 20
+                hopIngredient.hop = hop
+                hopIngredient.units = "GRAM"
+                hopIngredient.measure = content["Hopfen_VWH_"+counter+"_Menge"]
+                hopIngredient.temperature = 20
                 step.addToIngredients(ingredient).save(flush:true)  
             }
             else {
